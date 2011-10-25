@@ -6,10 +6,12 @@ here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.txt')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
-requires = ['pyramid', 'pyramid_debugtoolbar']
+requires = ('pyramid',
+            'pyramid_debugtoolbar',
+            'voteit.core',)
 
 setup(name='sverok_rm',
-      version='0.0',
+      version='2011',
       description='sverok_rm',
       long_description=README + '\n\n' +  CHANGES,
       classifiers=[
@@ -20,8 +22,8 @@ setup(name='sverok_rm',
         ],
       author='',
       author_email='',
-      url='',
-      keywords='web pyramid pylons',
+      url='https://github.com/Sverok',
+      keywords='web pyramid pylons voteit sverok',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
@@ -29,8 +31,6 @@ setup(name='sverok_rm',
       tests_require=requires,
       test_suite="sverok_rm",
       entry_points = """\
-      [paste.app_factory]
-      main = sverok_rm:main
       """,
       paster_plugins=['pyramid'],
       )
