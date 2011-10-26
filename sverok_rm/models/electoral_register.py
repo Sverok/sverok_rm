@@ -49,6 +49,6 @@ class ElectoralRegister(object):
 
 def includeme(config):
     """ Include ElectoralRegister adapter in registry.
-        Call this by running config.include('sveork_rm.models.electoral_register')
+        Call this by running config.include('sverok_rm.models.electoral_register')
     """
     config.registry.registerAdapter(ElectoralRegister, (IMeeting,), IElectoralRegister)
