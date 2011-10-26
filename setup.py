@@ -6,9 +6,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.txt')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
-requires = ('pyramid',
-            'pyramid_debugtoolbar',
-            'voteit.core',)
+requires = ('voteit.core',)
 
 setup(name='sverok_rm',
       version='2011',
