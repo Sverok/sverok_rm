@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="api.main_template.macros['master']"
+	  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+	  i18n:domain="sverok_rm">
+<body>
+<h1 metal:fill-slot="page_heading" i18n:translate="">Electoral Register</h1>
+<div metal:fill-slot="content">
+    <table>
+    <tal:iterate repeat="userid register">
+        <tr>
+        <tal:user define="user get_user(userid)">
+            <td><img tal:replace="structure user.get_image_tag()" /></td>
+            <td>${user.userid}</td>
+            <td>${user.get_field_value('first_name')}</td>
+            <td>${user.get_field_value('last_name')}</td>
+            <td>${is_voter(userid)}</td>
+        </tal:user>
+        </tr>
+    </tal:iterate>
+    </table>
+</div>
+</body>
+</html>

@@ -17,6 +17,12 @@ class ElectoralRegister(object):
         self.context = context
         if not hasattr(self.context, '__register__'):
             self.context.__register__ = OOSet()
+        if not hasattr(self.context, '__register_closed__'):
+            self.context.__register_closed__ = True
+    
+    @property
+    def closed(self):
+        return self.context.__register_closed__
     
     @property
     def register(self):
@@ -25,23 +31,28 @@ class ElectoralRegister(object):
         return self.context.__register__
     
     def add(self, userid):
+        if self.closed:
+            #FIXME: translations
+            raise Exception(u"Electoral register is closed")
+
         if userid not in self.register:
             self.register.add(userid)
 
     def clear(self):
-        self.closed = False
+        self.context.__register_closed__ = False
         self.context.__register__ = OOSet()
         
         userids_and_groups = []
         for permissions in self.context.get_security():
             groups = list(permissions['groups'])
-            groups.remove(ROLE_VOTER)
+            if ROLE_VOTER in groups:
+                groups.remove(ROLE_VOTER)
             userids_and_groups.append({'userid':permissions['userid'], 'groups':groups})
         
         self.context.set_security(userids_and_groups)
 
     def close(self):
-        self.closed = True
+        self.context.__register_closed__ = True
         
         #FIXME: set vote permissions the Sverok way
         for userid in self.register:
