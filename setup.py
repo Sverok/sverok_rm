@@ -29,6 +29,8 @@ setup(name='sverok_rm',
       tests_require=requires,
       test_suite="sverok_rm",
       entry_points = """\
+      [console_scripts]
+      participants_import = sverok_rm.scripts.participants_import:participants_import
       """,
       paster_plugins=['pyramid'],
       )

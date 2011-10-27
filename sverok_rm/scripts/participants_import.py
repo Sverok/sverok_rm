@@ -7,27 +7,38 @@ from voteit.core import security
 
 
 def participants_import(*args):
+    if len(*args) != 2:
+        print "2 arguments needed, first the slug of the meeting, second the name of the file"
+        return
+    
+    args = list(args)
+    meetingname = args[0][0]
+    filename = args[0][1]
+    
     worker = ScriptWorker('participants_import')
     
     print "Importing participants"
     root = worker.root
     users = worker.root.users
-    #FIXME: take meeting name from args
-    meeting = worker.root['meetings']['meeting']
+    meeting = worker.root[meetingname]
 
-    #FIXME: take file name from args
-    reader = csv.reader(open("import.csv", "rb"), delimiter=',', quotechar='"')
+    reader = csv.reader(open(filename, "rb"), delimiter=',', quotechar='"')
     
     try:
+        # skip first line
+        reader.next()
         for participant in reader:
-            firstname = participant[0]
-            lastname = participant[1]
+            firstname = unicode(participant[0], 'utf-8')
+            lastname = unicode(participant[1], 'utf-8')
             email = participant[2]
             userid = participant[3]
-            reserve = participant[4]
+            if len(participant) > 4:
+                reserve = participant[4]
+            else:
+                reserve = 100
             #FIXME: get password from file
             
-            print "\timporting: %s" % userid
+            print "\timporting: %s - %s %s" % (userid, firstname, lastname)
 
             user = User()
             user.set_field_value('first_name', firstname)
