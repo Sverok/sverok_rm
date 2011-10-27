@@ -6,35 +6,43 @@
 	  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
 	  i18n:domain="sverok_rm">
 <body>
+<head>
+<style type="text/css">
+table.electoral-register {
+    width: 50%;
+}
+</style>
 <h1 metal:fill-slot="page_heading" i18n:translate="">Electoral Register</h1>
 <div metal:fill-slot="content">
-    <h2><strong i18n:translate="">Total number of voters:</strong>&nbsp;${voters}</h2>
-    <h2 i18n:translate="">Reserves with voting rights</h2>
-    <table>
-    <tal:iterate repeat="userid reserves">
-        <tr>
-        <tal:user define="user get_user(userid)">
-            <td><img tal:replace="structure user.get_image_tag()" /></td>
-            <td>${user.userid}</td>
-            <td>${user.get_field_value('first_name')}</td>
-            <td>${user.get_field_value('last_name')}</td>
-        </tal:user>
-        </tr>
-    </tal:iterate>
-    </table>
-    <h2 i18n:translate="">Delegates without voting rights</h2>
-    <table>
-    <tal:iterate repeat="userid delegates">
-        <tr>
-        <tal:user define="user get_user(userid)">
-            <td><img tal:replace="structure user.get_image_tag()" /></td>
-            <td>${user.userid}</td>
-            <td>${user.get_field_value('first_name')}</td>
-            <td>${user.get_field_value('last_name')}</td>
-        </tal:user>
-        </tr>
-    </tal:iterate>
-    </table>
+    <div class="content_wrapper">
+        <h2><strong i18n:translate="">Total number of voters:</strong>&nbsp;${voters}</h2>
+        <h2 i18n:translate="">Reserves with voting rights</h2>
+        <table class="electoral-register">
+        <tal:iterate repeat="userid reserves">
+            <tr>
+            <tal:user define="user get_user(userid)">
+                <td><img tal:replace="structure user.get_image_tag()" /></td>
+                <td>${user.userid}</td>
+                <td>${user.get_field_value('first_name')}</td>
+                <td>${user.get_field_value('last_name')}</td>
+            </tal:user>
+            </tr>
+        </tal:iterate>
+        </table>
+        <h2 i18n:translate="">Delegates without voting rights</h2>
+        <table class="electoral-register">
+        <tal:iterate repeat="userid delegates">
+            <tr>
+            <tal:user define="user get_user(userid)">
+                <td><img tal:replace="structure user.get_image_tag()" /></td>
+                <td>${user.userid}</td>
+                <td>${user.get_field_value('first_name')}</td>
+                <td>${user.get_field_value('last_name')}</td>
+            </tal:user>
+            </tr>
+        </tal:iterate>
+        </table>
+    </div>
 </div>
 </body>
 </html>
