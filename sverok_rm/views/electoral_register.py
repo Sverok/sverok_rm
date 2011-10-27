@@ -6,28 +6,23 @@ from pyramid.renderers import render
 from pyramid.httpexceptions import HTTPFound
 from pyramid.traversal import find_root
 
-from sverok_rm.models.interfaces import IElectoralRegister
 from voteit.core.models.interfaces import IMeeting
+from voteit.core.views.base_view import BaseView
 from voteit.core.security import VIEW
 from voteit.core.security import MODERATE_MEETING
 from voteit.core.security import ROLE_VOTER
 
+from sverok_rm.models.interfaces import IElectoralRegister
+
 #FIXME: translations
 
-class ElectoralRegisterView(object):
+class ElectoralRegisterView(BaseView):
     """ 
     """
     
-    def __init__(self, request):
-        from voteit.core.views.api import APIView
-        self.api = APIView(request.context, request)
-    
-        self.userid = authenticated_userid(request)
-        if not self.userid:
-            raise Forbidden("You're not allowed to access this view.")
-        
-        self.request = request
-        self.register = self.request.registry.getAdapter(self.request.context, IElectoralRegister)
+    def __init__(self, context, request):
+        super(ElectoralRegisterView, self).__init__(context, request)
+        self.register = self.request.registry.getAdapter(self.context, IElectoralRegister)
 
     @view_config(name="clear_electoral_register", context=IMeeting, permission=MODERATE_MEETING)
     def clear(self):
@@ -36,16 +31,17 @@ class ElectoralRegisterView(object):
         self.register.clear()
         
         self.api.flash_messages.add(u"Electoral register is cleared.")
-        return HTTPFound(location=resource_url(self.request.context, self.request))
+        return HTTPFound(location=resource_url(self.context, self.request))
         
     @view_config(name="add_electoral_register", context=IMeeting, permission=VIEW)
     def add(self):
         """ 
         """
-        self.register.add(self.userid)
+        userid = authenticated_userid(self.request)
+        self.register.add(userid)
         
         self.api.flash_messages.add(u"Thanks, you have registered your attendance.")
-        return HTTPFound(location=resource_url(self.request.context, self.request))
+        return HTTPFound(location=resource_url(self.context, self.request))
         
     @view_config(name="close_electoral_register", context=IMeeting, permission=MODERATE_MEETING)
     def close(self):
@@ -53,27 +49,41 @@ class ElectoralRegisterView(object):
         """
         self.register.close()
         
-        return HTTPFound(location=resource_url(self.request.context, self.request)+'view_electoral_register')
+        return HTTPFound(location=resource_url(self.context, self.request)+'view_electoral_register')
         
     @view_config(name="view_electoral_register", context=IMeeting, renderer="templates/electoral_register.pt", permission=MODERATE_MEETING)
     def view(self):
-        root = find_root(self.request.context)
+        root = find_root(self.context)
         
         def _get_user(userid):
             return root['users'][userid]
-
-        def _is_voter(userid):
-            groups = self.request.context.get_groups(userid)
-            if ROLE_VOTER in groups:
-                return u"Yes"
             
-            return u"No"
+        voters = 0
+        delegates = []
+        reserves = []
         
-        response = {}
-        response['api'] = self.api
-        #FIXME: sort them according to the Sverok way
-        response['register'] = self.register.register
-        response['get_user'] = _get_user
-        response['is_voter'] = _is_voter
+        for userid in root.users.keys():
+            try:
+                id = int(userid)
+                groups = self.context.get_groups(userid)
+                if ROLE_VOTER in groups:
+                    voters += 1
+                if 101 <= id and id <= 201:
+                    if ROLE_VOTER not in groups:
+                        delegates.append(userid)
+                if id >= 202:
+                    if ROLE_VOTER in groups:
+                        reserves.append(userid)
+            except Exception:
+                pass
         
-        return response
+        # total number of users with voting rights
+        self.response['voters'] = voters
+        # delegates without voting rights
+        self.response['delegates'] = delegates
+        # reserves with voting right
+        self.response['reserves'] = reserves
+        
+        self.response['get_user'] = _get_user
+        
+        return self.response
