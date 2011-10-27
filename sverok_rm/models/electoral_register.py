@@ -1,6 +1,5 @@
 import re
 
-from BTrees.OOBTree import OOSet
 from zope.interface import implements
 
 from sverok_rm.models.interfaces import IElectoralRegister
@@ -16,7 +15,7 @@ class ElectoralRegister(object):
         """ Context to adapt """
         self.context = context
         if not hasattr(self.context, '__register__'):
-            self.context.__register__ = OOSet()
+            self.context.__register__ = []
         if not hasattr(self.context, '__register_closed__'):
             self.context.__register_closed__ = True
     
@@ -36,11 +35,11 @@ class ElectoralRegister(object):
             raise Exception(u"Electoral register is closed")
 
         if userid not in self.register:
-            self.register.add(userid)
+            self.register.append(userid)
 
     def clear(self):
         self.context.__register_closed__ = False
-        self.context.__register__ = OOSet()
+        self.context.__register__ = []
         
         userids_and_groups = []
         for permissions in self.context.get_security():
@@ -51,12 +50,24 @@ class ElectoralRegister(object):
         
         self.context.set_security(userids_and_groups)
 
-    def close(self):
+    def close(self, sverok=True):
         self.context.__register_closed__ = True
         
-        #FIXME: set vote permissions the Sverok way
-        for userid in self.register:
-            self.context.add_groups(userid, (ROLE_VOTER, ))
+        if sverok:
+            # sort register on userid
+            register = self.register
+            register.sort(key=lambda x: int(x))
+            # loop through register starting from 101 and give the first 101 the voter role
+            loops = 1
+            for userid in register:
+                if int(userid) >= 101:
+                    self.context.add_groups(userid, (ROLE_VOTER, ))
+                    loops += 1
+                if loops > 101:
+                    break;
+        else:
+            for userid in self.register:
+                self.context.add_groups(userid, (ROLE_VOTER, ))
 
 def includeme(config):
     """ Include ElectoralRegister adapter in registry.
