@@ -9,7 +9,7 @@ from pyramid.traversal import find_root
 from sverok_rm.models.interfaces import IElectoralRegister
 from voteit.core.models.interfaces import IMeeting
 from voteit.core.security import VIEW
-from voteit.core.security import EDIT
+from voteit.core.security import MODERATE_MEETING
 from voteit.core.security import ROLE_VOTER
 
 #FIXME: translations
@@ -29,7 +29,7 @@ class ElectoralRegisterView(object):
         self.request = request
         self.register = self.request.registry.getAdapter(self.request.context, IElectoralRegister)
 
-    @view_config(name="clear_electoral_register", context=IMeeting, permission=EDIT)
+    @view_config(name="clear_electoral_register", context=IMeeting, permission=MODERATE_MEETING)
     def clear(self):
         """ 
         """
@@ -47,7 +47,7 @@ class ElectoralRegisterView(object):
         self.api.flash_messages.add(u"Thanks, you have registered your attendance.")
         return HTTPFound(location=resource_url(self.request.context, self.request))
         
-    @view_config(name="close_electoral_register", context=IMeeting, permission=EDIT)
+    @view_config(name="close_electoral_register", context=IMeeting, permission=MODERATE_MEETING)
     def close(self):
         """ 
         """
@@ -55,7 +55,7 @@ class ElectoralRegisterView(object):
         
         return HTTPFound(location=resource_url(self.request.context, self.request)+'view_electoral_register')
         
-    @view_config(name="view_electoral_register", context=IMeeting, renderer="templates/electoral_register.pt", permission=EDIT)
+    @view_config(name="view_electoral_register", context=IMeeting, renderer="templates/electoral_register.pt", permission=MODERATE_MEETING)
     def view(self):
         root = find_root(self.request.context)
         
