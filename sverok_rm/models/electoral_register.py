@@ -54,8 +54,15 @@ class ElectoralRegister(object):
         self.context.__register_closed__ = True
         
         if sverok:
+            register = []
+            # remove non numeric userids
+            for userid in self.register:
+                try:
+                    int(userid)
+                    register.append(userid)
+                except Exception:
+                    pass
             # sort register on userid
-            register = self.register
             register.sort(key=lambda x: int(x))
             # loop through register starting from 101 and give the first 101 the voter role
             loops = 1

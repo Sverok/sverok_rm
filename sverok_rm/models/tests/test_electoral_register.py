@@ -73,6 +73,8 @@ class ElectoralRegisterTests(unittest.TestCase):
         obj = self._make_adapted_obj()
         obj.context.__register_closed__ = False
         
+        obj.add('admin')
+        
         # delegates
         for n in range(101, 202):
             obj.add("%s" % n)
@@ -87,6 +89,8 @@ class ElectoralRegisterTests(unittest.TestCase):
         
         obj.close()
         
+        self.assertFalse('role:Voter' in self.meeting.get_groups('admin'))
+        
         self.assertTrue('role:Voter' in self.meeting.get_groups('101'))
         self.assertTrue('role:Voter' in self.meeting.get_groups('201'))
         
@@ -99,6 +103,8 @@ class ElectoralRegisterTests(unittest.TestCase):
     def test_sverok_missing_delegates(self):
         obj = self._make_adapted_obj()
         obj.context.__register_closed__ = False
+        
+        obj.add('admin')
         
         # delegates
         for n in range(101, 200):
@@ -113,6 +119,8 @@ class ElectoralRegisterTests(unittest.TestCase):
             obj.add("%s" % n)
         
         obj.close()
+        
+        self.assertFalse('role:Voter' in self.meeting.get_groups('admin'))
         
         self.assertTrue('role:Voter' in self.meeting.get_groups('101'))
         self.assertTrue('role:Voter' in self.meeting.get_groups('199'))
