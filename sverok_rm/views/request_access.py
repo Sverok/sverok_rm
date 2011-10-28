@@ -12,9 +12,10 @@ from voteit.core.models.interfaces import IMeeting
 
 from sverok_rm import SverokMF as _
 
+#test
 
 PRE_ACCESS_TITLE = _(u"pre_access_request_label",
-                     default = u"Special access permission for Sverok RM. All authenticated members will be given view and propose permissions INSTANTLY if they request it.")
+                     default = u"Special access permission for Sverok RM. All users will be given view and propose permissions INSTANTLY if they request it.")
 @view_action('request_meeting_access', 'sverok_pre_rm_access', title = PRE_ACCESS_TITLE, interface = IMeeting)
 def public_request_meeting_access(context, request, va, **kw):
     if context.get_field_value('access_policy') != 'sverok_pre_rm_access':
