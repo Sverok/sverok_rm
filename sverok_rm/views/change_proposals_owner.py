@@ -1,10 +1,9 @@
 import colander
 import deform
-from voteit.core.views.base_edit import BaseEdit
-
 from pyramid.view import view_config
 from pyramid.url import resource_url
 from pyramid.httpexceptions import HTTPFound
+from voteit.core.views.base_edit import BaseEdit
 from voteit.core import VoteITMF as vmf
 from voteit.core.security import MODERATE_MEETING
 from voteit.core.security import ROLE_OWNER
@@ -12,8 +11,10 @@ from voteit.core.models.interfaces import IAgendaItem
 from voteit.core.models.interfaces import IProposal
 from voteit.core.models.schemas import button_update
 from voteit.core.models.schemas import button_cancel
+from betahaus.viewcomponent.decorators import view_action
 
 from sverok_rm.schemas.change_proposals_owner import add_proposals_owner_nodes
+from sverok_rm import SverokMF as _
 
 
 class ChangeProposalsOwner(BaseEdit):
@@ -30,12 +31,16 @@ class ChangeProposalsOwner(BaseEdit):
         """ Change proposal owners. """
         
         schema = colander.Schema()
+        url = resource_url(self.context, self.request)
         proposals = self.context.get_content(iface = IProposal, sort_on = 'created')
+        if not proposals:
+            self.api.flash_messages.add(_(u"No proposals here"))
+            return HTTPFound(location = url)
+
         add_proposals_owner_nodes(schema, proposals)
         schema = schema.bind(context = self.context, request = self.request)
         form = deform.Form(schema, buttons = (button_update, button_cancel,))
         self.api.register_form_resources(form)
-        url = resource_url(self.context, self.request)
 
         if 'cancel' in self.request.POST:
             self.api.flash_messages.add(vmf(u"Canceled"))
@@ -81,3 +86,12 @@ class ChangeProposalsOwner(BaseEdit):
         appstruct = self._appstruct(proposals)
         self.response['form'] = form.render(appstruct)
         return self.response
+
+
+
+@view_action('context_actions', 'change_owner', title = _(u"Change proposals owner"),
+             permission = MODERATE_MEETING, interface = IAgendaItem)
+def change_owner_menu_action(context, request, va, **kw):
+    api = kw['api']
+    url = "%s%s" % (api.resource_url(context, request), '@@proposals_owner')
+    return """<li><a href="%s">%s</a></li>""" % (url, api.translate(va.title))
