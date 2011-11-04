@@ -1,0 +1,91 @@
+# Swedish translations for voteit.core.
+# Copyright (C) 2011 ORGANIZATION
+# This file is distributed under the same license as the voteit.core
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: voteit.core 0.0\n"
+"POT-Creation-Date: 2011-11-04 19:05+0000\n"
+"PO-Revision-Date: 2011-09-28 14:00+0100\n"
+"Last-Translator: Fredrik Nilson <fredrik@betahaus.net>\n"
+"Language-Team: sv <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: ./views/electoral_register.py:105
+msgid "Add to electoral register"
+msgstr "Lägg till på röstlängd"
+
+#: ./views/change_proposals_owner.py:92
+msgid "Change proposals owner"
+msgstr "Ändra ägare av yrkande"
+
+#: ./views/electoral_register.py:96
+msgid "Clear electoral register"
+msgstr "Rensa röstlängd"
+
+#: ./views/electoral_register.py:97
+msgid "Close electoral register"
+msgstr "Stäng röstlängd"
+
+#: ./views/templates/electoral_register.pt:32
+msgid "Delegates without voting rights"
+msgstr "Ombud utan rösträtt"
+
+#: ./views/templates/electoral_register.pt:15
+msgid "Electoral Register"
+msgstr "Röstlängd"
+
+#: ./views/electoral_register.py:37
+msgid "Electoral register is cleared."
+msgstr "Röstlängden är tömd"
+
+#: ./models/electoral_register.py:37
+msgid "Electoral register is closed"
+msgstr "Röstlängden är stängd"
+
+#: ./views/change_proposals_owner.py:37
+msgid "No proposals here"
+msgstr "Inga yrkanden här"
+
+#: ./views/templates/electoral_register.pt:19
+msgid "Reserves with voting rights"
+msgstr "Reserver med rösträtt"
+
+#: ./views/electoral_register.py:47
+msgid "Thanks, you have registered your attendance."
+msgstr "Tack, din närvaro är noterad"
+
+#: ./views/templates/electoral_register.pt:18
+msgid "Total number of voters:"
+msgstr "Totalt antal med rösträtt:"
+
+#: ./views/electoral_register.py:98
+msgid "View electoral register"
+msgstr "Visa röstlängd"
+
+#: ./views/request_access.py:38
+msgid "You've been granted access to view and add proposals. Welcome!"
+msgstr "Du har givits rätt att läsa och yrka i mötet. Välkommen!"
+
+#. Default: "Special access permission for Sverok RM. All users will be given view and propose permissions INSTANTLY if they request it."
+#: ./views/request_access.py:15
+msgid "pre_access_request_label"
+msgstr "Specialmötestillgångspolicy för Sveroks Riksmöte. Alla registrerade användare ges läs- och yrkanderätt i mötet OMEDELBART om de begär det."
+
+#. Default: "This meeting allows anyone to request access to it. You only need to click below to be allowed to view and add proposals in the meeting."
+#: ./views/request_access.py:42
+#, fuzzy
+msgid "public_meeting_access_request_description"
+msgstr "Detta möte ger tillgång till alla registrerade som begär det. Du behöver bara klicka nedan för att få rätt att läsa och yrka i mötet."
+
