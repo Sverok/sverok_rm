@@ -16,6 +16,7 @@ from voteit.core.security import ROLE_VOTER
 
 from sverok_rm import SverokMF as _
 from sverok_rm.models.interfaces import IElectoralRegister
+from sverok_rm.fanstaticlib import sverok_rm
 
 
 class ElectoralRegisterView(BaseView):
@@ -25,6 +26,7 @@ class ElectoralRegisterView(BaseView):
     def __init__(self, context, request):
         super(ElectoralRegisterView, self).__init__(context, request)
         self.register = self.request.registry.getAdapter(self.context, IElectoralRegister)
+        sverok_rm.need()
 
     @view_config(name="clear_electoral_register", context=IMeeting, permission=MODERATE_MEETING)
     def clear(self):
