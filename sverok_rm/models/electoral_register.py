@@ -2,9 +2,11 @@ import re
 
 from zope.interface import implements
 
-from sverok_rm.models.interfaces import IElectoralRegister
 from voteit.core.models.interfaces import IMeeting
 from voteit.core.security import ROLE_VOTER
+
+from sverok_rm import SverokMF as _
+from sverok_rm.models.interfaces import IElectoralRegister
 
 
 class ElectoralRegister(object):
@@ -32,7 +34,7 @@ class ElectoralRegister(object):
     def add(self, userid):
         if self.closed:
             #FIXME: translations
-            raise Exception(u"Electoral register is closed")
+            raise Exception(_(u"Electoral register is closed"))
 
         if userid not in self.register:
             self.register.append(userid)

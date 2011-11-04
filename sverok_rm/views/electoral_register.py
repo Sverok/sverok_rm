@@ -14,9 +14,9 @@ from voteit.core.security import VIEW
 from voteit.core.security import MODERATE_MEETING
 from voteit.core.security import ROLE_VOTER
 
+from sverok_rm import SverokMF as _
 from sverok_rm.models.interfaces import IElectoralRegister
 
-#FIXME: translations
 
 class ElectoralRegisterView(BaseView):
     """ 
@@ -32,7 +32,7 @@ class ElectoralRegisterView(BaseView):
         """
         self.register.clear()
         
-        self.api.flash_messages.add(u"Electoral register is cleared.")
+        self.api.flash_messages.add(_(u"Electoral register is cleared."))
         return HTTPFound(location=resource_url(self.context, self.request))
         
     @view_config(name="add_electoral_register", context=IMeeting, permission=VIEW)
@@ -42,7 +42,7 @@ class ElectoralRegisterView(BaseView):
         userid = authenticated_userid(self.request)
         self.register.add(userid)
         
-        self.api.flash_messages.add(u"Thanks, you have registered your attendance.")
+        self.api.flash_messages.add(_(u"Thanks, you have registered your attendance."))
         return HTTPFound(location=resource_url(self.context, self.request))
         
     @view_config(name="close_electoral_register", context=IMeeting, permission=MODERATE_MEETING)
@@ -91,16 +91,16 @@ class ElectoralRegisterView(BaseView):
         return self.response
 
 
-@view_action('moderator_menu', 'clear_electoral_register', title = u"Clear electoral register", link = "@@clear_electoral_register")
-@view_action('moderator_menu', 'close_electoral_register', title = u"Close electoral register", link = "@@close_electoral_register")
-@view_action('moderator_menu', 'view_electoral_register', title = u"View electoral register", link = "@@view_electoral_register")
+@view_action('moderator_menu', 'clear_electoral_register', title = _(u"Clear electoral register"), link = "@@clear_electoral_register")
+@view_action('moderator_menu', 'close_electoral_register', title = _(u"Close electoral register"), link = "@@close_electoral_register")
+@view_action('moderator_menu', 'view_electoral_register', title = _(u"View electoral register"), link = "@@view_electoral_register")
 def electoral_register_moderator_menu_link(context, request, va, **kw):
     api = kw['api']
     url = api.resource_url(api.meeting, request) + va.kwargs['link']
     return """<li><a href="%s">%s</a></li>""" % (url, api.translate(va.title))
 
 
-@view_action('meeting_actions', 'add_electoral_register', title = u"Add to electoral register")
+@view_action('meeting_actions', 'add_electoral_register', title = _(u"Add to electoral register"))
 def participants_tab(context, request, va, **kw):
     api = kw['api']
     register = request.registry.getAdapter(api.meeting, IElectoralRegister)
