@@ -6,6 +6,8 @@ from pyramid.renderers import render
 from pyramid.httpexceptions import HTTPFound
 from pyramid.traversal import find_root
 
+from betahaus.viewcomponent import view_action
+
 from voteit.core.models.interfaces import IMeeting
 from voteit.core.views.base_view import BaseView
 from voteit.core.security import VIEW
@@ -87,3 +89,22 @@ class ElectoralRegisterView(BaseView):
         self.response['get_user'] = _get_user
         
         return self.response
+
+
+@view_action('moderator_menu', 'clear_electoral_register', title = u"Clear electoral register", link = "@@clear_electoral_register")
+@view_action('moderator_menu', 'close_electoral_register', title = u"Close electoral register", link = "@@close_electoral_register")
+@view_action('moderator_menu', 'view_electoral_register', title = u"View electoral register", link = "@@view_electoral_register")
+def electoral_register_moderator_menu_link(context, request, va, **kw):
+    api = kw['api']
+    url = api.resource_url(api.meeting, request) + va.kwargs['link']
+    return """<li><a href="%s">%s</a></li>""" % (url, api.translate(va.title))
+
+
+@view_action('meeting_actions', 'add_electoral_register', title = u"Add to electoral register")
+def participants_tab(context, request, va, **kw):
+    api = kw['api']
+    register = request.registry.getAdapter(api.meeting, IElectoralRegister)
+    if register.closed or not api.userid or not api.meeting:
+        return ''
+    link = '%s@@add_electoral_register' % api.resource_url(api.meeting, request)
+    return """ <li class="tab"><a href="%s">%s</a></li>"""  % (link, api.translate(va.title))
