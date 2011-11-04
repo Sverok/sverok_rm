@@ -103,8 +103,10 @@ def electoral_register_moderator_menu_link(context, request, va, **kw):
 @view_action('meeting_actions', 'add_electoral_register', title = _(u"Add to electoral register"))
 def participants_tab(context, request, va, **kw):
     api = kw['api']
+    if not api.userid or not api.meeting:
+        return ''
     register = request.registry.getAdapter(api.meeting, IElectoralRegister)
-    if register.closed or not api.userid or not api.meeting:
+    if register.closed:
         return ''
     link = '%s@@add_electoral_register' % api.resource_url(api.meeting, request)
     return """ <li class="tab"><a href="%s">%s</a></li>"""  % (link, api.translate(va.title))
