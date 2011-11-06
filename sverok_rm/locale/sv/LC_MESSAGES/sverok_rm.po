@@ -36,7 +36,7 @@ msgstr "Stäng röstlängd"
 
 #: ./views/electoral_register.py:50
 msgid "Closed"
-msgstr ""
+msgstr "Stängd"
 
 #. Default: "Delegates without voting rights"
 #: ./views/templates/electoral_register.pt:25
@@ -67,7 +67,7 @@ msgstr "Reserver med rösträtt"
 
 #: ./views/electoral_register.py:103
 msgid "Set yourself as present"
-msgstr ""
+msgstr "Meddela din närvaro"
 
 #: ./views/electoral_register.py:43
 msgid "Thanks, you have registered your attendance."
@@ -93,7 +93,6 @@ msgstr "Specialmötestillgångspolicy för Sveroks Riksmöte. Alla registrerade 
 
 #. Default: "This meeting allows anyone to request access to it. You only need to click below to be allowed to view and add proposals in the meeting."
 #: ./views/request_access.py:42
-#, fuzzy
 msgid "public_meeting_access_request_description"
 msgstr "Detta möte ger tillgång till alla registrerade som begär det. Du behöver bara klicka nedan för att få rätt att läsa och yrka i mötet."
 
