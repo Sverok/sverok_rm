@@ -10,3 +10,9 @@ def includeme(config):
     config.scan('sverok_rm')
     config.include('sverok_rm.models.electoral_register')
     config.add_translation_dirs('sverok_rm:locale/')
+    
+    #Remove like-action from voteit.core
+    from betahaus.viewcomponent.interfaces import IViewGroup
+    vg = config.registry.queryUtility(IViewGroup, name = 'user_tags')
+    if vg and 'like' in vg:
+        del vg['like']
