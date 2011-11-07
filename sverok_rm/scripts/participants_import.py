@@ -7,7 +7,7 @@ from voteit.core import security
 
 
 def participants_import(*args):
-    if len(*args) != 2:
+    if len(args) != 2:
         print "2 arguments needed, first the slug of the meeting, second the name of the file"
         return
     
