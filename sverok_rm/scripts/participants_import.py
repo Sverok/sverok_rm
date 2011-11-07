@@ -30,7 +30,7 @@ def participants_import(*args):
             email = participant[4]
             password = unicode(participant[5], 'utf-8')
             
-            print "\timporting: %s - %s %s" % (userid, firstname, lastname)
+            print "\timporting: %s" % userid
             
             user = User()
             user.set_field_value('first_name', firstname)
