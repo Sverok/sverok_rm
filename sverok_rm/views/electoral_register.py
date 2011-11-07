@@ -1,13 +1,9 @@
 from pyramid.view import view_config
 from pyramid.security import authenticated_userid
-from pyramid.response import Response
 from pyramid.url import resource_url
-from pyramid.renderers import render
 from pyramid.httpexceptions import HTTPFound
 from pyramid.traversal import find_root
-
 from betahaus.viewcomponent import view_action
-
 from voteit.core.models.interfaces import IMeeting
 from voteit.core.views.base_view import BaseView
 from voteit.core.security import VIEW
@@ -20,7 +16,7 @@ from sverok_rm.fanstaticlib import sverok_rm
 
 
 class ElectoralRegisterView(BaseView):
-    """ 
+    """ Handle electoral register
     """
     
     def __init__(self, context, request):
@@ -30,7 +26,7 @@ class ElectoralRegisterView(BaseView):
 
     @view_config(name="clear_electoral_register", context=IMeeting, permission=MODERATE_MEETING)
     def clear(self):
-        """ 
+        """ Remove vote permissions and clear registry
         """
         self.register.clear()
         
@@ -39,7 +35,7 @@ class ElectoralRegisterView(BaseView):
         
     @view_config(name="add_electoral_register", context=IMeeting, permission=VIEW)
     def add(self):
-        """ 
+        """ Set someone as attending
         """
         userid = authenticated_userid(self.request)
         self.register.add(userid)
@@ -49,15 +45,15 @@ class ElectoralRegisterView(BaseView):
         
     @view_config(name="close_electoral_register", context=IMeeting, permission=MODERATE_MEETING)
     def close(self):
-        """ 
+        """ Close registry
         """
+        self.api.flash_messages.add(_(u"Closed"))
         self.register.close()
-        
         return HTTPFound(location=resource_url(self.context, self.request)+'view_electoral_register')
-        
-    @view_config(name="view_electoral_register", context=IMeeting, renderer="templates/electoral_register.pt", permission=MODERATE_MEETING)
+
+    @view_config(name="view_electoral_register", context=IMeeting, renderer="templates/electoral_register.pt", permission=VIEW)
     def view(self):
-        root = find_root(self.context)
+        root = self.api.root
         
         def _get_user(userid):
             return root['users'][userid]
@@ -93,17 +89,19 @@ class ElectoralRegisterView(BaseView):
         return self.response
 
 
-@view_action('moderator_menu', 'clear_electoral_register', title = _(u"Clear electoral register"), link = "@@clear_electoral_register")
-@view_action('moderator_menu', 'close_electoral_register', title = _(u"Close electoral register"), link = "@@close_electoral_register")
-@view_action('moderator_menu', 'view_electoral_register', title = _(u"View electoral register"), link = "@@view_electoral_register")
+@view_action('moderator_menu', 'clear_electoral_register', title = _(u"Clear electoral register"),
+             permission = MODERATE_MEETING, link = "@@clear_electoral_register")
+@view_action('moderator_menu', 'close_electoral_register', title = _(u"Close electoral register"),
+             permission = MODERATE_MEETING, link = "@@close_electoral_register")
+@view_action('moderator_menu', 'view_electoral_register', title = _(u"View electoral register"),
+             permission = MODERATE_MEETING, link = "@@view_electoral_register")
 def electoral_register_moderator_menu_link(context, request, va, **kw):
     api = kw['api']
     url = api.resource_url(api.meeting, request) + va.kwargs['link']
     return """<li><a href="%s">%s</a></li>""" % (url, api.translate(va.title))
 
-
-@view_action('meeting_actions', 'add_electoral_register', title = _(u"Add to electoral register"))
-def participants_tab(context, request, va, **kw):
+@view_action('meeting_actions', 'add_electoral_register', title = _(u"Set yourself as present"))
+def electoral_register_link(context, request, va, **kw):
     api = kw['api']
     if not api.userid or not api.meeting:
         return ''
