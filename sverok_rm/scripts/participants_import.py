@@ -1,5 +1,6 @@
 import csv
 import transaction
+import sys
 
 from voteit.core.scripts.worker import ScriptWorker
 from voteit.core.models.user import User
@@ -7,9 +8,8 @@ from voteit.core import security
 
 
 def participants_import(*args):
-    args = list(args)
-    meetingname = args[0][0]
-    filename = args[0][1]
+    meetingname = sys.argv[1]
+    filename = sys.argv[2]
     
     worker = ScriptWorker('participants_import')
     
