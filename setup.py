@@ -32,6 +32,7 @@ setup(name='sverok_rm',
       [console_scripts]
       participants_import = sverok_rm.scripts.participants_import:participants_import
       post_import = sverok_rm.scripts.post_import:post_import
+      proposal_stop = sverok_rm.scripts.proposal_stop:proposal_stop
       [fanstatic.libraries]
       sverok_rm_lib = sverok_rm.fanstaticlib:sverok_rm_lib
       """,
