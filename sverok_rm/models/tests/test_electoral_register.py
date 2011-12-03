@@ -18,8 +18,8 @@ class ElectoralRegisterTests(unittest.TestCase):
     def _make_adapted_obj(self):
         from sverok_rm.models.electoral_register import ElectoralRegister
         from voteit.core.models.meeting import Meeting
-        self.meeting = context = Meeting()
-        return ElectoralRegister(context)
+        self.meeting = Meeting()
+        return ElectoralRegister(self.meeting)
 
     def test_interface(self):
         from sverok_rm.models.interfaces import IElectoralRegister
@@ -38,17 +38,16 @@ class ElectoralRegisterTests(unittest.TestCase):
         obj = self._make_adapted_obj()
         obj.context.__register_closed__ = False
         
-        obj.add('fredrik')
-        obj.add('robin')
-        obj.add('anders')
+        obj.add('50')
+        obj.add('150')
+        obj.add('250')
         
-        obj.close(sverok=False)
-        self.assertTrue(obj.closed)
+        obj.close()
+        self.assertTrue(obj.register_closed)
         
-        self.assertTrue('role:Voter' in self.meeting.get_groups('fredrik'))
-        self.assertTrue('role:Voter' in self.meeting.get_groups('robin'))
-        self.assertTrue('role:Voter' in self.meeting.get_groups('anders'))
-        self.assertFalse('role:Voter' in self.meeting.get_groups('hanna'))
+        self.assertFalse('role:Voter' in self.meeting.get_groups('50'))
+        self.assertTrue('role:Voter' in self.meeting.get_groups('150'))
+        self.assertTrue('role:Voter' in self.meeting.get_groups('250'))
 
     def test_clear(self):
         obj = self._make_adapted_obj()
@@ -58,10 +57,10 @@ class ElectoralRegisterTests(unittest.TestCase):
         obj.add('robin')
         obj.add('anders')
         
-        obj.close(sverok=False)
+        obj.close()
         
         obj.clear()
-        self.assertFalse(obj.closed)
+        self.assertFalse(obj.register_closed)
         self.assertEqual(len(obj.register), 0)
         
         self.assertFalse('role:Voter' in self.meeting.get_groups('fredrik'))

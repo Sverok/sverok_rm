@@ -1,6 +1,5 @@
-import re
-
 from zope.interface import implements
+from BTrees.OOBTree import OOSet
 
 from voteit.core.models.interfaces import IMeeting
 from voteit.core.security import ROLE_VOTER
@@ -16,32 +15,35 @@ class ElectoralRegister(object):
     def __init__(self, context):
         """ Context to adapt """
         self.context = context
-        if not hasattr(self.context, '__register__'):
-            self.context.__register__ = []
-        if not hasattr(self.context, '__register_closed__'):
-            self.context.__register_closed__ = True
-    
-    @property
-    def closed(self):
-        return self.context.__register_closed__
-    
+
     @property
     def register(self):
-        """ Acts as a storage.
-        """
-        return self.context.__register__
-    
+        try:
+            return self.context.__register__
+        except AttributeError:
+            self.context.__register__ = OOSet()
+            return self.context.__register__
+
+    @property
+    def register_closed(self):
+        try:
+            return self.context.__register_closed__
+        except AttributeError:
+            self.context.__register_closed__ = True
+            return self.context.__register_closed__
+
     def add(self, userid):
-        if self.closed:
+        if self.register_closed:
             #FIXME: translations
             raise Exception(_(u"Electoral register is closed"))
 
         if userid not in self.register:
-            self.register.append(userid)
+            self.register.add(userid)
 
     def clear(self):
         self.context.__register_closed__ = False
-        self.context.__register__ = []
+        if hasattr(self.context, '__register__'):
+            delattr(self.context, '__register__')
         
         userids_and_groups = []
         for permissions in self.context.get_security():
@@ -52,31 +54,27 @@ class ElectoralRegister(object):
         
         self.context.set_security(userids_and_groups)
 
-    def close(self, sverok=True):
+    def close(self):
         self.context.__register_closed__ = True
-        
-        if sverok:
-            register = []
-            # remove non numeric userids
-            for userid in self.register:
-                try:
-                    int(userid)
-                    register.append(userid)
-                except Exception:
-                    pass
-            # sort register on userid
-            register.sort(key=lambda x: int(x))
-            # loop through register starting from 101 and give the first 101 the voter role
-            loops = 1
-            for userid in register:
-                if int(userid) >= 101:
-                    self.context.add_groups(userid, (ROLE_VOTER, ))
-                    loops += 1
-                if loops > 101:
-                    break;
-        else:
-            for userid in self.register:
+        register = []
+        # remove non numeric userids
+        for userid in self.register:
+            try:
+                int(userid)
+                register.append(userid)
+            except ValueError:
+                pass
+        # sort register on userid
+        register.sort(key=lambda x: int(x))
+        # loop through register starting from 101 and give the first 101 the voter role
+        loops = 1
+        for userid in register:
+            if int(userid) >= 101:
                 self.context.add_groups(userid, (ROLE_VOTER, ))
+                loops += 1
+            if loops > 101:
+                break;
+
 
 def includeme(config):
     """ Include ElectoralRegister adapter in registry.

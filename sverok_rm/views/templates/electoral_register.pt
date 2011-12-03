@@ -14,7 +14,6 @@
     <tal:iterate repeat="userid reserves">
         <tr>
         <tal:user define="user get_user(userid)">
-            <td><img tal:replace="structure user.get_image_tag()" /></td>
             <td>${user.userid}</td>
             <td>${user.get_field_value('first_name')}</td>
             <td>${user.get_field_value('last_name')}</td>
@@ -27,7 +26,6 @@
     <tal:iterate repeat="userid delegates">
         <tr>
         <tal:user define="user get_user(userid)">
-            <td><img tal:replace="structure user.get_image_tag()" /></td>
             <td>${user.userid}</td>
             <td>${user.get_field_value('first_name')}</td>
             <td>${user.get_field_value('last_name')}</td>

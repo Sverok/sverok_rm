@@ -108,7 +108,13 @@ def electoral_register_link(context, request, va, **kw):
     if not api.userid or not api.meeting:
         return ''
     register = request.registry.getAdapter(api.meeting, IElectoralRegister)
-    if register.closed:
+    if register.register_closed:
+        return ''
+    try:
+        int(api.userid)
+    except ValueError:
+        return ''
+    if api.userid in register.register:
         return ''
     link = '%s@@add_electoral_register' % api.resource_url(api.meeting, request)
     return """ <li class="tab"><a href="%s">%s</a></li>"""  % (link, api.translate(va.title))
