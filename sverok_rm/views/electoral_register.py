@@ -90,13 +90,15 @@ class ElectoralRegisterView(BaseView):
 
 
 @view_action('moderator_menu', 'clear_electoral_register', title = _(u"Clear electoral register"),
-             permission = MODERATE_MEETING, link = "@@clear_electoral_register")
+             link = "@@clear_electoral_register")
 @view_action('moderator_menu', 'close_electoral_register', title = _(u"Close electoral register"),
-             permission = MODERATE_MEETING, link = "@@close_electoral_register")
+             link = "@@close_electoral_register")
 @view_action('moderator_menu', 'view_electoral_register', title = _(u"View electoral register"),
-             permission = MODERATE_MEETING, link = "@@view_electoral_register")
+             link = "@@view_electoral_register")
 def electoral_register_moderator_menu_link(context, request, va, **kw):
     api = kw['api']
+    if not api.context_has_permission(MODERATE_MEETING, api.meeting):
+        return ""
     url = api.resource_url(api.meeting, request) + va.kwargs['link']
     return """<li><a href="%s">%s</a></li>""" % (url, api.translate(va.title))
 
