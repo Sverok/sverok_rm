@@ -1,6 +1,10 @@
 from betahaus.viewcomponent import view_action
+from pyramid.traversal import find_interface
+
+from voteit.core.models.interfaces import IMeeting
 
 from sverok_rm import SverokMF as _
+from sverok_rm.models.delegate_numbers import DelegateNumberStorage  
 
 
 @view_action('main', 'creators_info')
@@ -15,9 +19,13 @@ def creators_info(context, request, va, **kw):
     for userid in kw['creators']:
         user = api.get_user(userid)
         try:
-            delegate_number = user.get_field_value('delegate_number', '')
+            meeting = find_interface(api.context, IMeeting)
+            delegate_numbers = DelegateNumberStorage(meeting)
+            delegate_number = delegate_numbers.get(userid) 
             if delegate_number:
                 delegate_number = " (%s)" % delegate_number
+            else:
+                delegate_number = ''
             output += """<a href="%(userinfo_url)s" class="inlineinfo">%(portrait_tag)s %(usertitle)s (%(userid)s)%(delegate_number)s</a>"""\
                 % {'userinfo_url': api.get_userinfo_url(userid),
                    'portrait_tag': portrait and user.get_image_tag() or '',
