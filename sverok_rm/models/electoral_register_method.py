@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from pyramid.traversal import find_root
+from pyramid.traversal import find_interface
 from zope.interface import implements
 
 from voteit.core.security import ROLE_VOTER
@@ -8,6 +8,7 @@ from voteit.core.models.interfaces import IMeeting
 from voteit.irl.models.interfaces import IElectoralRegisterMethod
 
 from sverok_rm import SverokMF as _
+from sverok_rm.models.delegate_numbers import DelegateNumberStorage
 
 
 class ElectoralRegisterMethod(object):
@@ -32,11 +33,11 @@ class ElectoralRegisterMethod(object):
         self.context.set_security(userids_and_groups, event=False)
         
         # get delegate number for all users 
-        root = find_root(self.context)
+        meeting = find_interface(self.context, IMeeting)
+        delegate_numbers = DelegateNumberStorage(meeting)
         delegates = {}
         for userid in userids:
-            user = root.users[userid]
-            delegate_number = user.get_field_value('delegate_number') 
+            delegate_number = delegate_numbers.get(userid) 
             if delegate_number:
                 # remove non numerical delegate numbers
                 try:

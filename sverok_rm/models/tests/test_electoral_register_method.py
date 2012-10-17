@@ -29,6 +29,10 @@ class ElectoralRegisterMethodTests(unittest.TestCase):
         self.root = bootstrap_voteit(echo=False)
         self.meeting = Meeting()
         self.root['meeting'] = self.meeting
+        
+    def _make_delegate_numbers(self):
+        from sverok_rm.models.delegate_numbers import DelegateNumberStorage
+        return DelegateNumberStorage(self.meeting)
 
     def test_interface(self):
         from voteit.irl.models.interfaces import IElectoralRegisterMethod
@@ -39,12 +43,11 @@ class ElectoralRegisterMethodTests(unittest.TestCase):
     def test_apply(self):
         self._fixures()
         obj = self._make_adapted_obj()
+        delegate_number_storage = self._make_delegate_numbers()
 
-        from voteit.core.models.user import User
         for delegate_number in ('50', '150', '250', 'admin'):
             userid = "user_%s" % delegate_number
-            self.root.users[userid] = User(creators = [userid], 
-                                           delegate_number = delegate_number)
+            delegate_number_storage.add(userid, delegate_number)
             self.meeting.add_groups(userid, (ROLE_VOTER, ), event=False)
         
         obj.apply(('user_150', 'user_250'))
@@ -58,6 +61,7 @@ class ElectoralRegisterMethodTests(unittest.TestCase):
     def test_sverok_all_delegates(self):
         self._fixures()
         obj = self._make_adapted_obj()
+        delegate_number_storage = self._make_delegate_numbers()
         
         delegate_numbers = []
         
@@ -75,11 +79,9 @@ class ElectoralRegisterMethodTests(unittest.TestCase):
             
         # add users
         userids = []
-        from voteit.core.models.user import User
         for delegate_number in delegate_numbers:
             userid = "user_%s" % delegate_number
-            self.root.users[userid] = User(creators = [userid], 
-                                           delegate_number = delegate_number)
+            delegate_number_storage.add(userid, delegate_number)
             userids.append(userid)
         
         userids.append('admin')
@@ -100,6 +102,7 @@ class ElectoralRegisterMethodTests(unittest.TestCase):
     def test_sverok_missing_delegates(self):
         self._fixures()
         obj = self._make_adapted_obj()
+        delegate_number_storage = self._make_delegate_numbers()
         
         delegate_numbers = []
         
@@ -117,11 +120,9 @@ class ElectoralRegisterMethodTests(unittest.TestCase):
             
         # add users
         userids = []
-        from voteit.core.models.user import User
         for delegate_number in delegate_numbers:
             userid = "user_%s" % delegate_number
-            self.root.users[userid] = User(creators = [userid], 
-                                           delegate_number = delegate_number)
+            delegate_number_storage.add(userid, delegate_number)
             userids.append(userid)
         
         userids.append('admin')
