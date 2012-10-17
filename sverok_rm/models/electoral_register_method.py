@@ -1,5 +1,6 @@
 from copy import deepcopy
 
+from pyramid.traversal import find_root
 from zope.interface import implements
 
 from voteit.core.security import ROLE_VOTER
@@ -28,24 +29,27 @@ class ElectoralRegisterMethod(object):
             if ROLE_VOTER in groups:
                 groups.remove(ROLE_VOTER)
             userids_and_groups.append({'userid':permissions['userid'], 'groups':groups})
-        
         self.context.set_security(userids_and_groups, event=False)
         
-        # set ROLE_VOTER on all users in userids
-        register = []
-        # remove non numeric userids
+        # get delegate number for all users 
+        root = find_root(self.context)
+        delegates = {}
         for userid in userids:
-            try:
-                int(userid)
-                register.append(userid)
-            except ValueError:
-                pass
-        # sort register on userid
-        register.sort(key=lambda x: int(x))
-        # loop through register starting from 101 and give the first 101 the voter role
+            user = root.users[userid]
+            delegate_number = user.get_field_value('delegate_number') 
+            if delegate_number:
+                # remove non numerical delegate numbers
+                try:
+                    delegate_number = int(delegate_number)
+                    delegates[delegate_number] = userid
+                except ValueError:
+                    pass
+        
+        # loop through delegates starting from 101 and give the first 101 the voter role
         loops = 1
-        for userid in register:
-            if int(userid) >= 101:
+        for delegate_number in sorted(delegates.iterkeys()):
+            if int(delegate_number) >= 101:
+                userid = delegates[delegate_number]
                 self.context.add_groups(userid, (ROLE_VOTER, ), event=False)
                 loops += 1
             if loops > 101:
