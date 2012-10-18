@@ -52,7 +52,7 @@ class DelegateTicket(Folder, WorkflowAware):
     #No schemas
     
     def __init__(self, delegate_number):
-        self.delegate_number = delegate_number
+        self.delegate_number = "%s" % delegate_number
         self.created = utcnow()
         self.closed = None
         self.claimed_by = None
