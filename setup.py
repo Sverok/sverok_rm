@@ -34,9 +34,16 @@ setup(name='sverok_rm',
       participants_import = sverok_rm.scripts.participants_import:participants_import
       post_import = sverok_rm.scripts.post_import:post_import
       proposal_stop = sverok_rm.scripts.proposal_stop:proposal_stop
+      delegate_numbers = sverok_rm.scripts.delegate_numbers:delegate_numbers
       [fanstatic.libraries]
       sverok_rm_lib = sverok_rm.fanstaticlib:sverok_rm_lib
       """,
       paster_plugins=['pyramid'],
+      message_extractors = { '.': [
+              ('**.py',   'lingua_python', None ),
+              ('**.pt',   'lingua_xml', None ),
+              #The ZCML extractor seems broken in lingua, but since it's ZCML is XML this works. /robinharms
+              ('**.zcml',   'lingua_xml', None ),
+              ]},
       )
 
