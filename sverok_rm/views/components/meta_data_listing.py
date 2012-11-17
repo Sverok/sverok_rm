@@ -1,10 +1,8 @@
 from betahaus.viewcomponent import view_action
-from betahaus.viewcomponent.interfaces import IViewGroup
 from pyramid.traversal import find_resource
-
-from sverok_rm import SverokMF as _ 
 from voteit.core.security import VIEW
 
+from sverok_rm import SverokMF as _
 
 
 @view_action('meta_data_listing', 'proposal_number', permission=VIEW)

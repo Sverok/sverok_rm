@@ -19,6 +19,9 @@ from sverok_rm.models.interfaces import IDelegateTicketStorage
 from sverok_rm.models.interfaces import IDelegateTicket
 from sverok_rm.models.delegate_numbers import DelegateNumberStorage
 
+#FIXME: The way the tickets are added and handled allows for several users to have the same delegate number
+#This should be rewritten and fixed.
+
 
 class DelegateTicketStorage(object):
     implements(IDelegateTicketStorage)

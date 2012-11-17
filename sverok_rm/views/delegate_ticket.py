@@ -1,11 +1,9 @@
-import deform
 from deform import Form
 from pyramid.view import view_config
 from pyramid.url import resource_url
 from pyramid.httpexceptions import HTTPFound
 from betahaus.pyracont.factories import createSchema
 from betahaus.viewcomponent.decorators import view_action
-
 
 from voteit.core.security import VIEW
 from voteit.core.models.interfaces import IMeeting
@@ -14,7 +12,6 @@ from voteit.core.models.schemas import button_cancel
 from voteit.core.views.base_view import BaseView
 
 from sverok_rm import SverokMF as _
-from sverok_rm.models.delegate_ticket import DelegateTicket
 from sverok_rm.models.delegate_ticket import DelegateTicketStorage
 from sverok_rm.models.delegate_numbers import DelegateNumberStorage
 
