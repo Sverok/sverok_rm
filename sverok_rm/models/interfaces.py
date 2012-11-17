@@ -1,8 +1,6 @@
 from zope.interface import Attribute
 from zope.interface import Interface
 
-from betahaus.pyracont.interfaces import IBaseFolder
-
 
 class IDelegateTicketStorage(Interface):
     """ Adapts meeting to add ability to store delegate tickets

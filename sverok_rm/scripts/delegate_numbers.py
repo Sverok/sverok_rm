@@ -1,4 +1,3 @@
-import csv
 import transaction
 import sys
 
@@ -10,12 +9,8 @@ from sverok_rm.models.delegate_ticket import DelegateTicket
 
 def delegate_numbers(*args):
     meetingname = sys.argv[1]
-    
     worker = ScriptWorker('delegate_numbers')
-    
     print "Delegate numbers"
-    root = worker.root
-    users = worker.root.users
     meeting = worker.root[meetingname]
     tickets = DelegateTicketStorage(meeting)
     
@@ -23,9 +18,7 @@ def delegate_numbers(*args):
         for number in range(1, 300):
             ticket = DelegateTicket(number)
             tickets.add(ticket)
-            
             print "%s;%s" % (number, ticket.token) 
-            
         transaction.commit()
     except Exception, e:
         worker.logger.exception(e)

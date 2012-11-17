@@ -1,5 +1,3 @@
-from copy import deepcopy
-
 from pyramid.traversal import find_interface
 from zope.interface import implements
 

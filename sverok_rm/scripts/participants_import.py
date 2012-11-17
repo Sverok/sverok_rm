@@ -10,14 +10,10 @@ from voteit.core import security
 def participants_import(*args):
     meetingname = sys.argv[1]
     filename = sys.argv[2]
-    
     worker = ScriptWorker('participants_import')
-    
     print "Importing participants"
-    root = worker.root
     users = worker.root.users
     meeting = worker.root[meetingname]
-
     reader = csv.reader(open(filename, "rb"), delimiter=';', quotechar='"')
     
     try:
@@ -32,7 +28,7 @@ def participants_import(*args):
             
             print "\timporting: %s" % userid
             
-            user = User()
+            user = User(creators = [userid])
             user.set_field_value('first_name', firstname)
             user.set_field_value('last_name', lastname)
             user.set_field_value('email', email)

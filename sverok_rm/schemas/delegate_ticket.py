@@ -1,5 +1,4 @@
 import colander
-import deform
 from betahaus.pyracont.decorators import schema_factory
 from pyramid.traversal import find_interface
 

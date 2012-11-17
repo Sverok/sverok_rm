@@ -4,7 +4,6 @@ from datetime import datetime
 from pyramid import testing
 from zope.interface.verify import verifyClass
 from zope.interface.verify import verifyObject
-from pyramid_mailer import get_mailer
 from pyramid.exceptions import Forbidden
 
 from voteit.core.models.interfaces import IMeeting

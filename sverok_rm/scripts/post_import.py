@@ -5,6 +5,7 @@ from voteit.core.security import ROLE_OWNER
 
 
 def post_import(*args):
+    #FIXME: This script shouldn't exist - it's already fixed in participants_import
     worker = ScriptWorker('post_import')
     
     print "Adjusting ownership for imported users"

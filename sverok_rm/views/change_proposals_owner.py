@@ -29,7 +29,7 @@ class ChangeProposalsOwner(BaseEdit):
                  renderer = 'voteit.core:views/templates/base_edit.pt')
     def edit_proposals_owners(self):
         """ Change proposal owners. """
-        
+
         schema = colander.Schema()
         url = resource_url(self.context, self.request)
         proposals = self.context.get_content(iface = IProposal, sort_on = 'created')
