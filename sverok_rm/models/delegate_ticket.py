@@ -1,11 +1,10 @@
-import string
+from random import choice
 
 from BTrees.OOBTree import OOBTree
 from betahaus.pyracont.decorators import content_factory
 from pyramid.exceptions import Forbidden
 from pyramid.security import authenticated_userid
 from pyramid.traversal import find_interface 
-from random import choice
 from repoze.folder import Folder
 from uuid import uuid4
 from zope.interface import implements
@@ -21,6 +20,8 @@ from sverok_rm.models.delegate_numbers import DelegateNumberStorage
 
 #FIXME: The way the tickets are added and handled allows for several users to have the same delegate number
 #This should be rewritten and fixed.
+
+CHARPOOL = "abcdefghjkmnpqrstuvxyzABCDEFGHJKLMNPQRSTUVXYZ23456789-"
 
 
 class DelegateTicketStorage(object):
@@ -59,7 +60,7 @@ class DelegateTicket(Folder, WorkflowAware):
         self.created = utcnow()
         self.closed = None
         self.claimed_by = None
-        self.token = ''.join([choice(string.letters + string.digits) for x in range(30)])
+        self.token = ''.join([choice(CHARPOOL) for x in range(30)])
         self.uid = unicode(uuid4())
         super(DelegateTicket, self).__init__()
 
@@ -78,11 +79,8 @@ class DelegateTicket(Folder, WorkflowAware):
         # get delegate number adapter and add userid and delegaste number
         delegate_numbers = DelegateNumberStorage(meeting)
         delegate_numbers.add(userid, self.delegate_number)
-
         self.claimed_by = userid
-
         self.set_workflow_state(request, 'closed')
-        
         self.closed = utcnow()
 
 
