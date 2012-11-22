@@ -12,8 +12,7 @@ from sverok_rm.models.delegate_numbers import DelegateNumberStorage
 class ElectoralRegisterMethod(object):
     name = 'sverok_electoral_register_method'
     title = _(u"sverok_electoral_register_method_title", default=u"Sverok method")
-    description = _(u"standard_electoral_register_method_description",
-                    default = u"")
+    description = u""
     implements(IElectoralRegisterMethod)
     
     def __init__(self, context):

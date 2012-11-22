@@ -3,96 +3,215 @@
 # This file is distributed under the same license as the voteit.core
 # project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: voteit.core 0.0\n"
-"POT-Creation-Date: 2011-11-05 21:27+0000\n"
-"PO-Revision-Date: 2011-09-28 14:00+0100\n"
-"Last-Translator: Fredrik Nilson <fredrik@betahaus.net>\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2012-11-22 11:11+0100\n"
+"PO-Revision-Date: 2012-11-22 11:17+0100\n"
+"Last-Translator: Robin Harms Oredsson <robin@betahaus.net>\n"
 "Language-Team: sv <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
-"Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "Generated-By: Babel 0.9.6\n"
+"X-Generator: Poedit 1.5.4\n"
 
-#: ./views/change_proposals_owner.py:92
-msgid "Change proposals owner"
-msgstr "Ändra ägare av yrkande"
+#: sverok_rm/models/delegate_ticket.py:46
+msgid "Delegate ticket"
+msgstr "Delegatbiljett"
 
-#: ./views/electoral_register.py:92
-msgid "Clear electoral register"
-msgstr "Rensa röstlängd"
+#. Default: Sverok method
+#: sverok_rm/models/electoral_register_method.py:14
+msgid "sverok_electoral_register_method_title"
+msgstr "Sverokmetoden"
 
-#: ./views/electoral_register.py:94
-msgid "Close electoral register"
-msgstr "Stäng röstlängd"
+#. Default: There's no ticket with the code you entered.
+#: sverok_rm/schemas/delegate_ticket.py:21
+#, fuzzy
+msgid "no_ticket_with_that_token_error"
+msgstr "Det finns ingen bijett som har den kod du skrev in."
 
-#: ./views/electoral_register.py:50
-msgid "Closed"
-msgstr "Stängd"
+#. Default: Enter the ticket code - it should be about 30 chars long.
+#: sverok_rm/schemas/delegate_ticket.py:33
+msgid "claim_ticket_token_title"
+msgstr "Fyll i biljettkoden - den bör vara ca 30 tecken lång."
 
-#. Default: "Delegates without voting rights"
-#: ./views/templates/electoral_register.pt:25
-msgid "Delegates without voting rights"
-msgstr "Ombud utan rösträtt"
-
-#. Default: "Electoral Register"
-#: ./views/templates/electoral_register.pt:9
-msgid "Electoral Register"
-msgstr "Röstlängd"
-
-#: ./views/electoral_register.py:33
-msgid "Electoral register is cleared."
-msgstr "Röstlängden är tömd"
-
-#: ./models/electoral_register.py:37
-msgid "Electoral register is closed"
-msgstr "Röstlängden är stängd"
-
-#: ./views/change_proposals_owner.py:37
+#: sverok_rm/views/change_proposals_owner.py:37
 msgid "No proposals here"
 msgstr "Inga yrkanden här"
 
-#. Default: "Reserves with voting rights"
-#: ./views/templates/electoral_register.pt:12
-msgid "Reserves with voting rights"
-msgstr "Reserver med rösträtt"
+#: sverok_rm/views/change_proposals_owner.py:92
+msgid "Change proposals owner"
+msgstr "Ändra ägare av yrkande"
 
-#: ./views/electoral_register.py:103
-msgid "Set yourself as present"
-msgstr "Meddela din närvaro"
+#: sverok_rm/views/delegate_ticket.py:24
+msgid "Claim delegate ticket"
+msgstr "Registrera delegatnummer"
 
-#: ./views/electoral_register.py:43
-msgid "Thanks, you have registered your attendance."
-msgstr "Tack, din närvaro är noterad"
+#: sverok_rm/views/delegate_ticket.py:41
+msgid "You've have been assigned delegate number ${number}"
+msgstr "Du har tilldelats delegatnummer ${number}"
 
-#. Default: "Total number of voters:"
-#: ./views/templates/electoral_register.pt:11
-msgid "Total number of voters:"
-msgstr "Totalt antal med rösträtt:"
+#: sverok_rm/views/delegate_ticket.py:46
+msgid "Canceled"
+msgstr "Avbruten"
 
-#: ./views/electoral_register.py:96
-msgid "View electoral register"
-msgstr "Visa röstlängd"
+#: sverok_rm/views/delegate_ticket.py:55
+msgid "Claim delegate number"
+msgstr "Registrera delegatnummer"
 
-#: ./views/request_access.py:38
+#. Default: Special access permission for Sverok RM. All users will be given
+#. view
+#. and propose permissions INSTANTLY if they request it.
+#: sverok_rm/views/components/request_access.py:15
+msgid "pre_access_request_label"
+msgstr ""
+"Specialmötestillgångspolicy för Sveroks Riksmöte. Alla registrerade "
+"användare ges läs- och yrkanderätt i mötet OMEDELBART om de begär det."
+
+#: sverok_rm/views/components/request_access.py:38
 msgid "You've been granted access to view and add proposals. Welcome!"
 msgstr "Du har givits rätt att läsa och yrka i mötet. Välkommen!"
 
-#. Default: "Special access permission for Sverok RM. All users will be given view and propose permissions INSTANTLY if they request it."
-#: ./views/request_access.py:15
-msgid "pre_access_request_label"
-msgstr "Specialmötestillgångspolicy för Sveroks Riksmöte. Alla registrerade användare ges läs- och yrkanderätt i mötet OMEDELBART om de begär det."
-
-#. Default: "This meeting allows anyone to request access to it. You only need to click below to be allowed to view and add proposals in the meeting."
-#: ./views/request_access.py:42
+#. Default: This meeting allows anyone to request access to it. You only need
+#. to
+#. click below to be allowed to view and add proposals in the meeting.
+#: sverok_rm/views/components/request_access.py:42
 msgid "public_meeting_access_request_description"
-msgstr "Detta möte ger tillgång till alla registrerade som begär det. Du behöver bara klicka nedan för att få rätt att läsa och yrka i mötet."
+msgstr ""
+"Detta möte ger tillgång till alla registrerade som begär det. Du behöver "
+"bara klicka nedan för att få rätt att läsa och yrka i mötet."
 
+#: sverok_rm/views/templates/electoral_register.pt:9
+msgid "Electoral Register"
+msgstr "Röstlängd"
+
+#: sverok_rm/views/templates/electoral_register.pt:11
+msgid "Total number of voters:"
+msgstr "Totalt antal med rösträtt:"
+
+#: sverok_rm/views/templates/electoral_register.pt:12
+msgid "Reserves with voting rights"
+msgstr "Reserver med rösträtt"
+
+#: sverok_rm/views/templates/electoral_register.pt:24
+msgid "Delegates without voting rights"
+msgstr "Ombud utan rösträtt"
+
+#: sverok_rm/views/templates/participants.pt:17
+msgid "Participants"
+msgstr "Deltagare"
+
+#. Default: Click the icons to change permission. Any permission that's changed
+#. will be listed in bold. When you're done, click save at the bottom. If all
+#. permissions are removed from a user, that user is removed from the meeting.
+#: sverok_rm/views/templates/participants.pt:19
+msgid "participants_form_instructions"
+msgstr ""
+"Clicka på ikonerna för att ändra rättigheter. Ändrade rättigheter visas i "
+"fetstil. När du är klar, klicka på spara längst ner. Om alla rättigheter tas "
+"bort från en användare så tas den användaren bort från mötet."
+
+#: sverok_rm/views/templates/participants.pt:29
+msgid "UserID"
+msgstr "AnvändarID"
+
+#: sverok_rm/views/templates/participants.pt:30
+msgid "First name"
+msgstr "Efternamn"
+
+#: sverok_rm/views/templates/participants.pt:31
+msgid "Last name"
+msgstr "Förnamn"
+
+#: sverok_rm/views/templates/participants.pt:32
+#: sverok_rm/views/templates/snippets/user_basic_info.pt:9
+msgid "Email"
+msgstr "Epost"
+
+#: sverok_rm/views/templates/participants.pt:33
+msgid "Delegate number"
+msgstr "Delegatnummer"
+
+#: sverok_rm/views/templates/participants.pt:34
+msgid "View"
+msgstr "Se"
+
+#: sverok_rm/views/templates/participants.pt:35
+msgid "Discuss"
+msgstr "Diskutera"
+
+#: sverok_rm/views/templates/participants.pt:36
+msgid "Propose"
+msgstr "Föreslå"
+
+#: sverok_rm/views/templates/participants.pt:37
+msgid "Voter"
+msgstr "Rösträtt"
+
+#: sverok_rm/views/templates/participants.pt:38
+msgid "Moderate"
+msgstr "Moderera"
+
+#: sverok_rm/views/templates/participants.pt:39
+msgid "Administrator"
+msgstr "Administratör"
+
+#: sverok_rm/views/templates/participants.pt:45
+#: sverok_rm/views/templates/participants.pt:50
+#: sverok_rm/views/templates/participants.pt:55
+#: sverok_rm/views/templates/participants.pt:60
+#: sverok_rm/views/templates/participants.pt:65
+msgid "all"
+msgstr "alla"
+
+#: sverok_rm/views/templates/participants.pt:46
+#: sverok_rm/views/templates/participants.pt:51
+#: sverok_rm/views/templates/participants.pt:56
+#: sverok_rm/views/templates/participants.pt:61
+#: sverok_rm/views/templates/participants.pt:66
+msgid "none"
+msgstr "inga"
+
+#: sverok_rm/views/templates/participants.pt:100
+msgid "Save"
+msgstr "Spara"
+
+#: sverok_rm/views/templates/participants.pt:107
+msgid "Back"
+msgstr "Tillbaka"
+
+#: sverok_rm/views/templates/participants.pt:112
+msgid "Invite participants"
+msgstr "Bjud in deltagare"
+
+#: sverok_rm/views/templates/participants.pt:116
+msgid "Add participant"
+msgstr "Lägg till deltagare"
+
+#: sverok_rm/views/templates/participants.pt:121
+msgid "Yes"
+msgstr "Ja"
+
+#: sverok_rm/views/templates/participants.pt:122
+msgid "No"
+msgstr "Nej"
+
+#: sverok_rm/views/templates/snippets/user_basic_info.pt:12
+msgid "About me"
+msgstr "Om mig"
+
+#: sverok_rm/views/templates/snippets/user_basic_info.pt:14
+msgid "This user hasn't entered anything"
+msgstr "Denna användare har inte skrivit något"
+
+#: sverok_rm/workflows/delegate_ticket.zcml:18
+msgid "Open"
+msgstr "Öppen"
+
+#: sverok_rm/workflows/delegate_ticket.zcml:23
+msgid "Closed"
+msgstr "Stängd"

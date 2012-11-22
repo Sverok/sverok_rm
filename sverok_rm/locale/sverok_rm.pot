@@ -1,93 +1,206 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Translations template for sverok_rm.
+# Copyright (C) 2012 ORGANIZATION
+# This file is distributed under the same license as the sverok_rm project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-05 21:27+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Project-Id-Version: sverok_rm 2011\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2012-11-22 11:11+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
-"Preferred-Encodings: utf-8 latin1\n"
-"Domain: sverok_rm\n"
+"Generated-By: Babel 0.9.6\n"
 
-#: ./views/change_proposals_owner.py:92
-msgid "Change proposals owner"
+#: sverok_rm/models/delegate_ticket.py:46
+msgid "Delegate ticket"
 msgstr ""
 
-#: ./views/electoral_register.py:92
-msgid "Clear electoral register"
+#. Default: Sverok method
+#: sverok_rm/models/electoral_register_method.py:14
+msgid "sverok_electoral_register_method_title"
 msgstr ""
 
-#: ./views/electoral_register.py:94
-msgid "Close electoral register"
+#. Default: There's no ticket with the code you entered.
+#: sverok_rm/schemas/delegate_ticket.py:21
+msgid "no_ticket_with_that_token_error"
 msgstr ""
 
-#: ./views/electoral_register.py:50
-msgid "Closed"
+#. Default: Enter the ticket code - it should be about 30 chars long.
+#: sverok_rm/schemas/delegate_ticket.py:33
+msgid "claim_ticket_token_title"
 msgstr ""
 
-#. Default: "Delegates without voting rights"
-#: ./views/templates/electoral_register.pt:25
-msgid "Delegates without voting rights"
-msgstr ""
-
-#. Default: "Electoral Register"
-#: ./views/templates/electoral_register.pt:9
-msgid "Electoral Register"
-msgstr ""
-
-#: ./views/electoral_register.py:33
-msgid "Electoral register is cleared."
-msgstr ""
-
-#: ./models/electoral_register.py:37
-msgid "Electoral register is closed"
-msgstr ""
-
-#: ./views/change_proposals_owner.py:37
+#: sverok_rm/views/change_proposals_owner.py:37
 msgid "No proposals here"
 msgstr ""
 
-#. Default: "Reserves with voting rights"
-#: ./views/templates/electoral_register.pt:12
-msgid "Reserves with voting rights"
+#: sverok_rm/views/change_proposals_owner.py:92
+msgid "Change proposals owner"
 msgstr ""
 
-#: ./views/electoral_register.py:103
-msgid "Set yourself as present"
+#: sverok_rm/views/delegate_ticket.py:24
+msgid "Claim delegate ticket"
 msgstr ""
 
-#: ./views/electoral_register.py:43
-msgid "Thanks, you have registered your attendance."
+#: sverok_rm/views/delegate_ticket.py:41
+msgid "You've have been assigned delegate number ${number}"
 msgstr ""
 
-#. Default: "Total number of voters:"
-#: ./views/templates/electoral_register.pt:11
-msgid "Total number of voters:"
+#: sverok_rm/views/delegate_ticket.py:46
+msgid "Canceled"
 msgstr ""
 
-#: ./views/electoral_register.py:96
-msgid "View electoral register"
+#: sverok_rm/views/delegate_ticket.py:55
+msgid "Claim delegate number"
 msgstr ""
 
-#: ./views/request_access.py:38
-msgid "You've been granted access to view and add proposals. Welcome!"
-msgstr ""
-
-#. Default: "Special access permission for Sverok RM. All users will be given view and propose permissions INSTANTLY if they request it."
-#: ./views/request_access.py:15
+#. Default: Special access permission for Sverok RM. All users will be given view
+#. and propose permissions INSTANTLY if they request it.
+#: sverok_rm/views/components/request_access.py:15
 msgid "pre_access_request_label"
 msgstr ""
 
-#. Default: "This meeting allows anyone to request access to it. You only need to click below to be allowed to view and add proposals in the meeting."
-#: ./views/request_access.py:42
+#: sverok_rm/views/components/request_access.py:38
+msgid "You've been granted access to view and add proposals. Welcome!"
+msgstr ""
+
+#. Default: This meeting allows anyone to request access to it. You only need to
+#. click below to be allowed to view and add proposals in the meeting.
+#: sverok_rm/views/components/request_access.py:42
 msgid "public_meeting_access_request_description"
+msgstr ""
+
+#: sverok_rm/views/templates/electoral_register.pt:9
+msgid "Electoral Register"
+msgstr ""
+
+#: sverok_rm/views/templates/electoral_register.pt:11
+msgid "Total number of voters:"
+msgstr ""
+
+#: sverok_rm/views/templates/electoral_register.pt:12
+msgid "Reserves with voting rights"
+msgstr ""
+
+#: sverok_rm/views/templates/electoral_register.pt:24
+msgid "Delegates without voting rights"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:17
+msgid "Participants"
+msgstr ""
+
+#. Default: Click the icons to change permission. Any permission that's changed
+#. will be listed in bold. When you're done, click save at the bottom. If all
+#. permissions are removed from a user, that user is removed from the meeting.
+#: sverok_rm/views/templates/participants.pt:19
+msgid "participants_form_instructions"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:29
+msgid "UserID"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:30
+msgid "First name"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:31
+msgid "Last name"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:32
+#: sverok_rm/views/templates/snippets/user_basic_info.pt:9
+msgid "Email"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:33
+msgid "Delegate number"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:34
+msgid "View"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:35
+msgid "Discuss"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:36
+msgid "Propose"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:37
+msgid "Voter"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:38
+msgid "Moderate"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:39
+msgid "Administrator"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:45
+#: sverok_rm/views/templates/participants.pt:50
+#: sverok_rm/views/templates/participants.pt:55
+#: sverok_rm/views/templates/participants.pt:60
+#: sverok_rm/views/templates/participants.pt:65
+msgid "all"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:46
+#: sverok_rm/views/templates/participants.pt:51
+#: sverok_rm/views/templates/participants.pt:56
+#: sverok_rm/views/templates/participants.pt:61
+#: sverok_rm/views/templates/participants.pt:66
+msgid "none"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:100
+msgid "Save"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:107
+msgid "Back"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:112
+msgid "Invite participants"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:116
+msgid "Add participant"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:121
+msgid "Yes"
+msgstr ""
+
+#: sverok_rm/views/templates/participants.pt:122
+msgid "No"
+msgstr ""
+
+#: sverok_rm/views/templates/snippets/user_basic_info.pt:12
+msgid "About me"
+msgstr ""
+
+#: sverok_rm/views/templates/snippets/user_basic_info.pt:14
+msgid "This user hasn't entered anything"
+msgstr ""
+
+#: sverok_rm/workflows/delegate_ticket.zcml:18
+msgid "Open"
+msgstr ""
+
+#: sverok_rm/workflows/delegate_ticket.zcml:23
+msgid "Closed"
 msgstr ""
 

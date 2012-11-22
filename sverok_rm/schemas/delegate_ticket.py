@@ -18,8 +18,8 @@ class TicketValidator(object):
         tickets = DelegateTicketStorage(meeting)
         
         if value not in tickets.delegate_tickets:
-            msg = _('no_ticket_with_that_token',
-                    default=u"No ticket available with that number")
+            msg = _('no_ticket_with_that_token_error',
+                    default=u"There's no ticket with the code you entered.")
             raise colander.Invalid(node, msg)
 
 @colander.deferred
@@ -31,5 +31,5 @@ def deferred_ticket_validator(node, kw):
 class ClaimTicketSchema(colander.Schema):
     token = colander.SchemaNode(colander.String(),
                                 title = _(u"claim_ticket_token_title",
-                                          default = u"The ticket your received at the check-in."),
+                                          default = u"Enter the ticket code - it should be about 30 chars long."),
                                 validator = deferred_ticket_validator,)
