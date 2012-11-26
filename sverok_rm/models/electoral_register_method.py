@@ -44,13 +44,15 @@ class ElectoralRegisterMethod(object):
                     pass
         
         # loop through delegates starting from 101 and give the first 101 the voter role
-        loops = 1
-        for delegate_number in sorted(delegates.iterkeys()):
+        i = 0
+        keypool = sorted([int(x) for x in delegates.iterkeys()])
+        for delegate_number in keypool:
             if int(delegate_number) >= 101:
+                #We found a match and will use up voting rights
+                i += 1
                 userid = delegates[delegate_number]
                 self.context.add_groups(userid, (ROLE_VOTER, ), event=False)
-                loops += 1
-            if loops > 101:
+            if i >= 101:
                 break;
             
             
