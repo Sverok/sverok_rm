@@ -3,7 +3,7 @@
     <h4>
         <span tal:content="context.title">My fullname</span>
         <span>(${context.userid})</span>
-        <span tal:condition="delegate_number">(${delegate_number)</span>
+        <span tal:condition="delegate_number">(${delegate_number})</span>
     </h4>
     
     <h6><span i18n:translate="">Email</span>:</h6>
