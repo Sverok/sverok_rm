@@ -21,7 +21,7 @@ from sverok_rm.models.delegate_numbers import DelegateNumberStorage
 #FIXME: The way the tickets are added and handled allows for several users to have the same delegate number
 #This should be rewritten and fixed.
 
-CHARPOOL = "abcdefghjkmnpqrstuvxyzABCDEFGHJKLMNPQRSTUVXYZ23456789-"
+CHARPOOL = "abcdefghjkmnpqrstuvxyzABCDEFGHJKLMNPQRSTUVXYZ23456789"
 
 
 class DelegateTicketStorage(object):
@@ -60,7 +60,7 @@ class DelegateTicket(Folder, WorkflowAware):
         self.created = utcnow()
         self.closed = None
         self.claimed_by = None
-        self.token = ''.join([choice(CHARPOOL) for x in range(30)])
+        self.token = ''.join([choice(CHARPOOL) for x in range(10)])
         self.uid = unicode(uuid4())
         super(DelegateTicket, self).__init__()
 

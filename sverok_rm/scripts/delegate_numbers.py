@@ -18,7 +18,7 @@ def delegate_numbers(*args):
         for number in range(1, 300):
             ticket = DelegateTicket(number)
             tickets.add(ticket)
-            print "%s;%s" % (number, ticket.token) 
+            print "%s: %s" % (number, ticket.token)
         transaction.commit()
         print "Committed changes"
     except Exception, e:
