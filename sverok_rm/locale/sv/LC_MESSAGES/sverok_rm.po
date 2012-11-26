@@ -8,20 +8,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: voteit.core 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-11-22 11:11+0100\n"
+"POT-Creation-Date: 2012-11-26 14:43+0100\n"
 "PO-Revision-Date: 2012-11-22 11:17+0100\n"
 "Last-Translator: Robin Harms Oredsson <robin@betahaus.net>\n"
 "Language-Team: sv <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
-"X-Generator: Poedit 1.5.4\n"
 
 #: sverok_rm/models/delegate_ticket.py:46
 msgid "Delegate ticket"
-msgstr "Delegatbiljett"
+msgstr "Röstkortskod"
 
 #. Default: Sverok method
 #: sverok_rm/models/electoral_register_method.py:14
@@ -30,30 +29,29 @@ msgstr "Sverokmetoden"
 
 #. Default: There's no ticket with the code you entered.
 #: sverok_rm/schemas/delegate_ticket.py:21
-#, fuzzy
 msgid "no_ticket_with_that_token_error"
-msgstr "Det finns ingen bijett som har den kod du skrev in."
+msgstr "Det finns ingen röstkortskod som har den kod du skrev in."
 
 #. Default: Enter the ticket code - it should be about 30 chars long.
 #: sverok_rm/schemas/delegate_ticket.py:33
 msgid "claim_ticket_token_title"
-msgstr "Fyll i biljettkoden - den bör vara ca 30 tecken lång."
+msgstr "Fyll i röstkortskoden - den bör vara ca 10 tecken lång."
 
 #: sverok_rm/views/change_proposals_owner.py:37
 msgid "No proposals here"
-msgstr "Inga yrkanden här"
+msgstr "Inga förslag här"
 
 #: sverok_rm/views/change_proposals_owner.py:92
 msgid "Change proposals owner"
-msgstr "Ändra ägare av yrkande"
+msgstr "Ändra ägare av förslag"
 
 #: sverok_rm/views/delegate_ticket.py:24
 msgid "Claim delegate ticket"
-msgstr "Registrera delegatnummer"
+msgstr "Registrera röstkort"
 
 #: sverok_rm/views/delegate_ticket.py:41
 msgid "You've have been assigned delegate number ${number}"
-msgstr "Du har tilldelats delegatnummer ${number}"
+msgstr "Du har tilldelats röstkortsnummer ${number}"
 
 #: sverok_rm/views/delegate_ticket.py:46
 msgid "Canceled"
@@ -61,29 +59,51 @@ msgstr "Avbruten"
 
 #: sverok_rm/views/delegate_ticket.py:55
 msgid "Claim delegate number"
-msgstr "Registrera delegatnummer"
+msgstr "Registrera röstkortsnummer"
 
-#. Default: Special access permission for Sverok RM. All users will be given
-#. view
-#. and propose permissions INSTANTLY if they request it.
-#: sverok_rm/views/components/request_access.py:15
+#. Default: Special access permission for Sverok. All users will be given view,
+#. discussion and propose permissions INSTANTLY if they request it.
+#: sverok_rm/views/components/request_access.py:18
 msgid "pre_access_request_label"
 msgstr ""
 "Specialmötestillgångspolicy för Sveroks Riksmöte. Alla registrerade "
-"användare ges läs- och yrkanderätt i mötet OMEDELBART om de begär det."
+"användare ges läs-, diskussions- och förslagsrätt i mötet OMEDELBART om de begär det."
 
-#: sverok_rm/views/components/request_access.py:38
-msgid "You've been granted access to view and add proposals. Welcome!"
-msgstr "Du har givits rätt att läsa och yrka i mötet. Välkommen!"
+#: sverok_rm/views/components/request_access.py:41
+#: sverok_rm/views/components/request_access.py:75
+#| msgid "You've been granted access to view and add proposals. Welcome!"
+msgid "You've been granted access. Welcome!"
+msgstr "Du har givits tillträde till mötet. Välkommen!"
 
 #. Default: This meeting allows anyone to request access to it. You only need
 #. to
-#. click below to be allowed to view and add proposals in the meeting.
-#: sverok_rm/views/components/request_access.py:42
-msgid "public_meeting_access_request_description"
+#. click below to be allowed to view, discuss and add proposals in the meeting.
+#: sverok_rm/views/components/request_access.py:45
+#| msgid "public_meeting_access_request_description"
+msgid "pre_access_request_description"
 msgstr ""
 "Detta möte ger tillgång till alla registrerade som begär det. Du behöver "
-"bara klicka nedan för att få rätt att läsa och yrka i mötet."
+"bara klicka nedan för att få rätt att läsa, diskutera och föreslå i mötet."
+
+#. Default: Special access permission for Sverok. All users will be given view
+#. and
+#. discussion permissions INSTANTLY if they request it.
+#: sverok_rm/views/components/request_access.py:52
+#| msgid "pre_access_request_label"
+msgid "closed_access_request_label"
+msgstr ""
+"Specialmötestillgångspolicy för Sveroks Riksmöte (efter förslagsstopp). Alla registrerade "
+"användare ges läs- och diskusionsrätt i mötet OMEDELBART om de begär det."
+
+#. Default: This meeting allows anyone to request access to it. You only need
+#. to
+#. click below to be allowed to view and discuss in the meeting.
+#: sverok_rm/views/components/request_access.py:79
+#| msgid "public_meeting_access_request_description"
+msgid "closed_prop_access_request_description"
+msgstr ""
+"Detta möte ger tillgång till alla registrerade som begär det. Du behöver "
+"bara klicka nedan för att få tillgång till mötet."
 
 #: sverok_rm/views/templates/electoral_register.pt:9
 msgid "Electoral Register"
@@ -111,9 +131,9 @@ msgstr "Deltagare"
 #: sverok_rm/views/templates/participants.pt:19
 msgid "participants_form_instructions"
 msgstr ""
-"Clicka på ikonerna för att ändra rättigheter. Ändrade rättigheter visas i "
-"fetstil. När du är klar, klicka på spara längst ner. Om alla rättigheter tas "
-"bort från en användare så tas den användaren bort från mötet."
+"Clicka på ikonerna för att ändra rättigheter. Ändrade rättigheter visas i"
+" fetstil. När du är klar, klicka på spara längst ner. Om alla rättigheter"
+" tas bort från en användare så tas den användaren bort från mötet."
 
 #: sverok_rm/views/templates/participants.pt:29
 msgid "UserID"
@@ -134,7 +154,7 @@ msgstr "Epost"
 
 #: sverok_rm/views/templates/participants.pt:33
 msgid "Delegate number"
-msgstr "Delegatnummer"
+msgstr "Röstkortsnummer"
 
 #: sverok_rm/views/templates/participants.pt:34
 msgid "View"
@@ -215,3 +235,4 @@ msgstr "Öppen"
 #: sverok_rm/workflows/delegate_ticket.zcml:23
 msgid "Closed"
 msgstr "Stängd"
+
