@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sverok_rm 2011\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-11-22 11:11+0100\n"
+"POT-Creation-Date: 2012-11-26 14:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,20 +60,33 @@ msgstr ""
 msgid "Claim delegate number"
 msgstr ""
 
-#. Default: Special access permission for Sverok RM. All users will be given view
-#. and propose permissions INSTANTLY if they request it.
-#: sverok_rm/views/components/request_access.py:15
+#. Default: Special access permission for Sverok. All users will be given view,
+#. discussion and propose permissions INSTANTLY if they request it.
+#: sverok_rm/views/components/request_access.py:18
 msgid "pre_access_request_label"
 msgstr ""
 
-#: sverok_rm/views/components/request_access.py:38
-msgid "You've been granted access to view and add proposals. Welcome!"
+#: sverok_rm/views/components/request_access.py:41
+#: sverok_rm/views/components/request_access.py:75
+msgid "You've been granted access. Welcome!"
 msgstr ""
 
 #. Default: This meeting allows anyone to request access to it. You only need to
-#. click below to be allowed to view and add proposals in the meeting.
-#: sverok_rm/views/components/request_access.py:42
-msgid "public_meeting_access_request_description"
+#. click below to be allowed to view, discuss and add proposals in the meeting.
+#: sverok_rm/views/components/request_access.py:45
+msgid "pre_access_request_description"
+msgstr ""
+
+#. Default: Special access permission for Sverok. All users will be given view and
+#. discussion permissions INSTANTLY if they request it.
+#: sverok_rm/views/components/request_access.py:52
+msgid "closed_access_request_label"
+msgstr ""
+
+#. Default: This meeting allows anyone to request access to it. You only need to
+#. click below to be allowed to view and discuss in the meeting.
+#: sverok_rm/views/components/request_access.py:79
+msgid "closed_prop_access_request_description"
 msgstr ""
 
 #: sverok_rm/views/templates/electoral_register.pt:9
