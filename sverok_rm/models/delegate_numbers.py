@@ -5,6 +5,7 @@ from voteit.core.models.interfaces import IMeeting
 
 from sverok_rm import SverokMF as _ 
 from sverok_rm.models.interfaces import IDelegateNumberStorage
+from voteit.irl.models.interfaces import IMeetingPresence
 
 
 class DelegateNumberStorage(object):
@@ -24,10 +25,8 @@ class DelegateNumberStorage(object):
     def add(self, userid, delegate_number):
     	self.delegate_numbers[userid] = delegate_number
 
-    def get(self, userid):
-        if userid in self.delegate_numbers:
-            return self.delegate_numbers[userid]
-        return None
+    def get(self, userid, default=None):
+        return self.delegate_numbers.get(userid, default)
     
     
 def includeme(config):
