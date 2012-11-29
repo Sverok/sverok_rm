@@ -8,23 +8,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: voteit.core 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-11-26 14:43+0100\n"
-"PO-Revision-Date: 2012-11-22 11:17+0100\n"
+"POT-Creation-Date: 2012-11-29 09:21+0100\n"
+"PO-Revision-Date: 2012-11-29 09:22+0100\n"
 "Last-Translator: Robin Harms Oredsson <robin@betahaus.net>\n"
 "Language-Team: sv <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: sverok_rm/models/delegate_ticket.py:46
 msgid "Delegate ticket"
 msgstr "Röstkortskod"
 
-#. Default: Sverok method
-#: sverok_rm/models/electoral_register_method.py:14
-msgid "sverok_electoral_register_method_title"
+#: sverok_rm/models/elegible_voters_method.py:13
+msgid "Sverok method"
 msgstr "Sverokmetoden"
 
 #. Default: There's no ticket with the code you entered.
@@ -67,11 +67,11 @@ msgstr "Registrera röstkortsnummer"
 msgid "pre_access_request_label"
 msgstr ""
 "Specialmötestillgångspolicy för Sveroks Riksmöte. Alla registrerade "
-"användare ges läs-, diskussions- och förslagsrätt i mötet OMEDELBART om de begär det."
+"användare ges läs-, diskussions- och förslagsrätt i mötet OMEDELBART om de "
+"begär det."
 
 #: sverok_rm/views/components/request_access.py:41
 #: sverok_rm/views/components/request_access.py:75
-#| msgid "You've been granted access to view and add proposals. Welcome!"
 msgid "You've been granted access. Welcome!"
 msgstr "Du har givits tillträde till mötet. Välkommen!"
 
@@ -79,7 +79,6 @@ msgstr "Du har givits tillträde till mötet. Välkommen!"
 #. to
 #. click below to be allowed to view, discuss and add proposals in the meeting.
 #: sverok_rm/views/components/request_access.py:45
-#| msgid "public_meeting_access_request_description"
 msgid "pre_access_request_description"
 msgstr ""
 "Detta möte ger tillgång till alla registrerade som begär det. Du behöver "
@@ -89,37 +88,20 @@ msgstr ""
 #. and
 #. discussion permissions INSTANTLY if they request it.
 #: sverok_rm/views/components/request_access.py:52
-#| msgid "pre_access_request_label"
 msgid "closed_access_request_label"
 msgstr ""
-"Specialmötestillgångspolicy för Sveroks Riksmöte (efter förslagsstopp). Alla registrerade "
-"användare ges läs- och diskusionsrätt i mötet OMEDELBART om de begär det."
+"Specialmötestillgångspolicy för Sveroks Riksmöte (efter förslagsstopp). Alla "
+"registrerade användare ges läs- och diskusionsrätt i mötet OMEDELBART om de "
+"begär det."
 
 #. Default: This meeting allows anyone to request access to it. You only need
 #. to
 #. click below to be allowed to view and discuss in the meeting.
 #: sverok_rm/views/components/request_access.py:79
-#| msgid "public_meeting_access_request_description"
 msgid "closed_prop_access_request_description"
 msgstr ""
 "Detta möte ger tillgång till alla registrerade som begär det. Du behöver "
 "bara klicka nedan för att få tillgång till mötet."
-
-#: sverok_rm/views/templates/electoral_register.pt:9
-msgid "Electoral Register"
-msgstr "Röstlängd"
-
-#: sverok_rm/views/templates/electoral_register.pt:11
-msgid "Total number of voters:"
-msgstr "Totalt antal med rösträtt:"
-
-#: sverok_rm/views/templates/electoral_register.pt:12
-msgid "Reserves with voting rights"
-msgstr "Reserver med rösträtt"
-
-#: sverok_rm/views/templates/electoral_register.pt:24
-msgid "Delegates without voting rights"
-msgstr "Ombud utan rösträtt"
 
 #: sverok_rm/views/templates/participants.pt:17
 msgid "Participants"
@@ -131,9 +113,9 @@ msgstr "Deltagare"
 #: sverok_rm/views/templates/participants.pt:19
 msgid "participants_form_instructions"
 msgstr ""
-"Clicka på ikonerna för att ändra rättigheter. Ändrade rättigheter visas i"
-" fetstil. När du är klar, klicka på spara längst ner. Om alla rättigheter"
-" tas bort från en användare så tas den användaren bort från mötet."
+"Clicka på ikonerna för att ändra rättigheter. Ändrade rättigheter visas i "
+"fetstil. När du är klar, klicka på spara längst ner. Om alla rättigheter tas "
+"bort från en användare så tas den användaren bort från mötet."
 
 #: sverok_rm/views/templates/participants.pt:29
 msgid "UserID"
@@ -236,3 +218,17 @@ msgstr "Öppen"
 msgid "Closed"
 msgstr "Stängd"
 
+#~ msgid "sverok_electoral_register_method_title"
+#~ msgstr "Sverokmetoden"
+
+#~ msgid "Electoral Register"
+#~ msgstr "Röstlängd"
+
+#~ msgid "Total number of voters:"
+#~ msgstr "Totalt antal med rösträtt:"
+
+#~ msgid "Reserves with voting rights"
+#~ msgstr "Reserver med rösträtt"
+
+#~ msgid "Delegates without voting rights"
+#~ msgstr "Ombud utan rösträtt"

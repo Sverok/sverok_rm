@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sverok_rm 2011\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-11-26 14:43+0100\n"
+"POT-Creation-Date: 2012-11-29 09:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,9 +21,8 @@ msgstr ""
 msgid "Delegate ticket"
 msgstr ""
 
-#. Default: Sverok method
-#: sverok_rm/models/electoral_register_method.py:14
-msgid "sverok_electoral_register_method_title"
+#: sverok_rm/models/elegible_voters_method.py:13
+msgid "Sverok method"
 msgstr ""
 
 #. Default: There's no ticket with the code you entered.
@@ -87,22 +86,6 @@ msgstr ""
 #. click below to be allowed to view and discuss in the meeting.
 #: sverok_rm/views/components/request_access.py:79
 msgid "closed_prop_access_request_description"
-msgstr ""
-
-#: sverok_rm/views/templates/electoral_register.pt:9
-msgid "Electoral Register"
-msgstr ""
-
-#: sverok_rm/views/templates/electoral_register.pt:11
-msgid "Total number of voters:"
-msgstr ""
-
-#: sverok_rm/views/templates/electoral_register.pt:12
-msgid "Reserves with voting rights"
-msgstr ""
-
-#: sverok_rm/views/templates/electoral_register.pt:24
-msgid "Delegates without voting rights"
 msgstr ""
 
 #: sverok_rm/views/templates/participants.pt:17
