@@ -1,4 +1,5 @@
 from deform import Form
+from deform import ValidationFailure
 from pyramid.view import view_config
 from pyramid.url import resource_url
 from pyramid.httpexceptions import HTTPFound
