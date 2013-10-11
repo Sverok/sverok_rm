@@ -52,15 +52,15 @@ class ClaimTicketView(BaseView):
         self.response['form'] = form.render()
         return self.response
     
-    
-@view_action('participants_menu', 'claim_delegate_number', title = _(u"Claim delegate number"),
-             link = "delegate_ticket", permission=VIEW)
-def electoral_register_moderator_menu_link(context, request, va, **kw):
-    api = kw['api']
-
-    delegate_numbers = DelegateNumberStorage(api.meeting)
-    if delegate_numbers.get(api.userid):
-        return ""
-    
-    url = request.resource_url(api.meeting, va.kwargs['link']) 
-    return """<li><a href="%s">%s</a></li>""" % (url, api.translate(va.title))
+#FIXME: Hook this system into voteit.irl instead
+# @view_action('participants_menu', 'claim_delegate_number', title = _(u"Claim delegate number"),
+#              link = "delegate_ticket", permission=VIEW)
+# def electoral_register_moderator_menu_link(context, request, va, **kw):
+#     api = kw['api']
+# 
+#     delegate_numbers = DelegateNumberStorage(api.meeting)
+#     if delegate_numbers.get(api.userid):
+#         return ""
+#     
+#     url = request.resource_url(api.meeting, va.kwargs['link']) 
+#     return """<li><a href="%s">%s</a></li>""" % (url, api.translate(va.title))
