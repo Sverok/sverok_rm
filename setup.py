@@ -33,8 +33,6 @@ setup(name='sverok_rm',
       [console_scripts]
       participants_import = sverok_rm.scripts.participants_import:participants_import
       delegate_numbers = sverok_rm.scripts.delegate_numbers:delegate_numbers
-      [fanstatic.libraries]
-      sverok_rm_lib = sverok_rm.fanstaticlib:sverok_rm_lib
       """,
       paster_plugins=['pyramid'],
       message_extractors = { '.': [
