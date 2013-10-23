@@ -3,9 +3,10 @@ from pyramid.threadlocal import get_current_request
 from voteit.core.models.interfaces import IMeeting
 from voteit.irl.models.elegible_voters_method import ElegibleVotersMethod
 from voteit.irl.models.interfaces import IMeetingPresence
+from voteit.irl.models.interfaces import IParticipantNumbers
 
 from sverok_rm import SverokMF as _
-from sverok_rm.models.interfaces import IDelegateNumberStorage
+#from sverok_rm.models.interfaces import IDelegateNumberStorage
 
 
 class SverokElegibleVotersMethod(ElegibleVotersMethod):
@@ -16,18 +17,13 @@ class SverokElegibleVotersMethod(ElegibleVotersMethod):
     def get_voters(self, **kw):
         request = kw.get('request', get_current_request())
         max_voters = kw.get('max_voters', 101) #Good to be able to change it when testing :)
-        delegate_numbers = request.registry.getAdapter(self.context, IDelegateNumberStorage)
+        participant_numbers = request.registry.getAdapter(self.context, IParticipantNumbers)
         meeting_presence = request.registry.getAdapter(self.context, IMeetingPresence)
         potential_delegates = {}
         for userid in meeting_presence.present_userids:
-            delegate_number = delegate_numbers.get(userid)
-            try:
-                #Might be None!
-                delegate_number = int(delegate_number)
-            except TypeError:
-                #...which is handled here
-                continue
-            potential_delegates[delegate_number] = userid
+            pn = participant_numbers.userid_to_number.get(userid, None)
+            if pn is not None:
+                potential_delegates[pn] = userid
 
         # loop through delegates starting from 101 and give the first 101 the voter role
         i = 0
@@ -39,7 +35,7 @@ class SverokElegibleVotersMethod(ElegibleVotersMethod):
                 i += 1
                 voting_userids.add(potential_delegates[delegate_number])
             if i >= max_voters:
-                break;
+                break
         return voting_userids
 
 

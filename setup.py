@@ -10,7 +10,7 @@ requires = ('voteit.core',
             'voteit.irl',)
 
 setup(name='sverok_rm',
-      version='2011',
+      version='2013',
       description='sverok_rm',
       long_description=README + '\n\n' +  CHANGES,
       classifiers=[
@@ -30,16 +30,11 @@ setup(name='sverok_rm',
       tests_require=requires,
       test_suite="sverok_rm",
       entry_points = """\
-      [console_scripts]
-      participants_import = sverok_rm.scripts.participants_import:participants_import
-      delegate_numbers = sverok_rm.scripts.delegate_numbers:delegate_numbers
       """,
       paster_plugins=['pyramid'],
       message_extractors = { '.': [
               ('**.py',   'lingua_python', None ),
               ('**.pt',   'lingua_xml', None ),
-              #The ZCML extractor seems broken in lingua, but since it's ZCML is XML this works. /robinharms
-              ('**.zcml',   'lingua_xml', None ),
               ]},
       )
 

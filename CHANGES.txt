@@ -1,4 +1,11 @@
-0.0
----
+2013
+----
+
+- Hooking into voteit.irl. Removed all ticket and delegate number related things,
+  since the version in voteit.irl is much better implemented.
+
+
+2011
+----
 
 -  Initial version
