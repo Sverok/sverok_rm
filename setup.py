@@ -8,7 +8,8 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = ('voteit.core',
             'voteit.irl',
-            'betahaus.viewcomponent',)
+            'betahaus.viewcomponent',
+            'fanstatic',)
 
 setup(name='sverok_rm',
       version='2013',
@@ -31,6 +32,8 @@ setup(name='sverok_rm',
       tests_require=requires,
       test_suite="sverok_rm",
       entry_points = """\
+      [fanstatic.libraries]
+      sverok_lib = sverok_rm.fanstaticlib:sverok_lib
       """,
       paster_plugins=['pyramid'],
       message_extractors = { '.': [
