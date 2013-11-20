@@ -40,8 +40,8 @@ def includeme(config):
     from .fanstaticlib import sverok_lib
 
     #Add fanstatic resource
-    ba_main = Resource(sverok_lib, 'ba.se.js')
-    ba_integration = Resource(sverok_lib, 'ba_integration.js', depends = (ba_main, jquery_deform, ))
+    ba_main = Resource(sverok_lib, 'ba.se.js', dont_bundle = True)
+    ba_integration = Resource(sverok_lib, 'ba_integration.js', depends = (ba_main, jquery_deform, ), dont_bundle = True)
     util = config.registry.getUtility(IFanstaticResources)
     util.add('ba_integration', ba_integration, is_ba_enabled)
 
