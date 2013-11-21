@@ -15,6 +15,11 @@ def menu_toggle_ba(context, request, va, **kw):
     url = request.resource_url(context, '_toggle_ba')
     return u"""<li><a href="%s">%s</a></li>""" % (url, msg)
 
+def menu_show_ba(context, request, va, **kw):
+    if not request.cookies.get('ba_enabled', False):
+        return u""
+    return u"""<li><a href="javascript:toggleBar();">Visa talande webb</a></li>"""
+
 def toggle_ba(context, request):
     fm = request.registry.getAdapter(request, IFlashMessages)
     response = HTTPFound(location = request.resource_url(context))
@@ -46,9 +51,11 @@ def includeme(config):
     util.add('ba_integration', ba_integration, is_ba_enabled)
 
     #Add menu alternative
-    va = ViewAction(menu_toggle_ba, 'talande_webb')
+    va1 = ViewAction(menu_toggle_ba, 'menu_toggle_ba')
+    va2 = ViewAction(menu_show_ba, 'menu_show_ba')
     vg = config.registry.getUtility(IViewGroup, name = 'help_action')
-    vg.add(va)
+    vg.add(va1)
+    vg.add(va2)
 
     #Add toggle view
     config.add_view(toggle_ba, name = '_toggle_ba')
