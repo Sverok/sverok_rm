@@ -1,12 +1,10 @@
 from pyramid.threadlocal import get_current_request
 
-from voteit.core.models.interfaces import IMeeting
 from voteit.irl.models.elegible_voters_method import ElegibleVotersMethod
 from voteit.irl.models.interfaces import IMeetingPresence
 from voteit.irl.models.interfaces import IParticipantNumbers
 
-from sverok_rm import SverokMF as _
-#from sverok_rm.models.interfaces import IDelegateNumberStorage
+from sverok_rm import _
 
 
 class SverokElegibleVotersMethod(ElegibleVotersMethod):
@@ -42,5 +40,4 @@ class SverokElegibleVotersMethod(ElegibleVotersMethod):
 def includeme(config):
     """ Include method (adapter) so it can be found by the system that sets voting rights. """
     config.registry.registerAdapter(SverokElegibleVotersMethod,
-                                    (IMeeting,),
                                     name=SverokElegibleVotersMethod.name)

@@ -1,3 +1,9 @@
+2015
+----
+
+- Major cleanup. Almost all parts of this package except the elegible voters part removed.
+  All other parts are either deprecated or a part of another VoteIT package.
+
 2013
 ----
 

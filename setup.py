@@ -8,11 +8,10 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = ('voteit.core',
             'voteit.irl',
-            'betahaus.viewcomponent',
             'fanstatic',)
 
 setup(name='sverok_rm',
-      version='2013',
+      version='2015',
       description='sverok_rm',
       long_description=README + '\n\n' +  CHANGES,
       classifiers=[
@@ -21,8 +20,8 @@ setup(name='sverok_rm',
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
         ],
-      author='',
-      author_email='',
+      author='VoteIT development team',
+      author_email='info@voteit.se',
       url='https://github.com/Sverok',
       keywords='web pyramid pylons voteit sverok',
       packages=find_packages(),
@@ -35,10 +34,5 @@ setup(name='sverok_rm',
       [fanstatic.libraries]
       sverok_lib = sverok_rm.fanstaticlib:sverok_lib
       """,
-      paster_plugins=['pyramid'],
-      message_extractors = { '.': [
-              ('**.py',   'lingua_python', None ),
-              ('**.pt',   'lingua_xml', None ),
-              ]},
       )
 
