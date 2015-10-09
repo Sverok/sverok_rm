@@ -11,7 +11,7 @@ def includeme(config):
     config.scan('sverok_rm')
     config.include('sverok_rm.models.elegible_voters_method')
     config.add_translation_dirs('sverok_rm:locale/')
-    config.include(patch_localisation)
+    #config.include(patch_localisation)
 
 def patch_localisation(config):
     from betahaus.pyracont.interfaces import ISchemaFactory
