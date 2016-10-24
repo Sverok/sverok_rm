@@ -45,6 +45,11 @@
               <tal:has_profile condition="profile">
                 <img tal:replace="structure profile.get_image_tag(size = 40, request = request)" />
                 <span class="user_fullname">${profile.title}</span>
+                <tal:pron condition="getattr(request.meeting, 'pronomen_on_sl', False) == True">
+                <tal:def define="pron_title request.get_pronomen(profile)|''">
+                  <span tal:condition="pron_title">[${pron_title}]</span>
+                </tal:def>
+                </tal:pron>
               </tal:has_profile>
               <tal:no_profile condition="not profile">
                 <span class="glyphicon glyphicon-question-sign"></span>
