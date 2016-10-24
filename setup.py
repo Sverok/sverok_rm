@@ -8,6 +8,7 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = ('voteit.core',
             'voteit.irl',
+            'voteit.debate',
             'fanstatic',)
 
 setup(name='sverok_rm',
