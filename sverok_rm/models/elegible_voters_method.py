@@ -4,13 +4,11 @@ from voteit.irl.models.elegible_voters_method import ElegibleVotersMethod
 from voteit.irl.models.interfaces import IMeetingPresence
 from voteit.irl.models.interfaces import IParticipantNumbers
 
-from sverok_rm import _
-
 
 class SverokElegibleVotersMethod(ElegibleVotersMethod):
     name = 'sverok_voters_method'
-    title = _(u"Sverok method")
-    description = u""
+    title = "Sverokmetoden"
+    description = ""
 
     def get_voters(self, **kw):
         request = kw.get('request', get_current_request())
