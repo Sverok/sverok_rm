@@ -9,6 +9,7 @@ from arche.schemas import FinishRegistrationSchema
 
 """
 Patch för att kunna skriva kön.
+MIGRERAD TILL VOTEIT DEFAULT PACKAGES. ANVÄND INTE DENNA!
 """
 
 

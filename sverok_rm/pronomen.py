@@ -11,6 +11,7 @@ from voteit.core.schemas.meeting import EditMeetingSchema
 """
 Plugin för att kunna skriva kön och pronomen
 Eventuell patch för att visa det som byline, valbart.
+MIGRERAD TILL VOTEIT DEFAULT PACKAGES. ANVÄND INTE DENNA!
 """
 
 

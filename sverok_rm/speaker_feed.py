@@ -12,8 +12,8 @@ from voteit.irl.models.interfaces import IParticipantNumbers
 def active_list_speakers(context, request):
     """ Returns a json structure with speakers in the current list
     """
-    slists = request.registry.getAdapter(context, ISpeakerLists)
-    active_list = slists.get(slists.active_list_name)
+    slists = request.speaker_lists
+    active_list = slists.get(slists.get_active_list())
     root = context.__parent__
     data = {'active': None, 'queue': []}
     participant_numbers = request.registry.getAdapter(context, IParticipantNumbers)
@@ -34,15 +34,16 @@ def active_list_speakers(context, request):
                 'last_name': user.last_name,
                 'userid': userid,
                 'participant_number': pn,
-                'pronoun': getattr(user, 'pronomen', ''),
-                'profile_pic': img_url,}
+                'pronoun': getattr(user, 'pronoun', ''),
+                'profile_pic': img_url,
+            }
         else:
             return {'participant_number': pn, 'profile_pic': ''}
 
     if active_list:
         if active_list.current != None:  # Note could be int 0!
             data['active'] = get_user_data(active_list.current)
-        for num in active_list.speakers:
+        for num in active_list:
             data['queue'].append(get_user_data(num))
     return data
 
